@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <com.google.android.material.appbar.MaterialToolbar android:id="@+id/toolbar"
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+        android:background="@color/background" app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="New comparison" />
+    <TextView android:id="@+id/tvStep" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:padding="20dp" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/black" />
+    <TextView android:id="@+id/tvHint" style="@style/Caption" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:paddingStart="20dp" android:paddingEnd="20dp"
+        android:paddingBottom="8dp" android:visibility="gone"
+        android:text="Only technologies supported by the selected game will be evaluated" />
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvItems"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:paddingStart="14dp" android:paddingEnd="14dp" android:clipToPadding="false" />
+
+        <ScrollView android:id="@+id/step3" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:visibility="gone">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="20dp">
+                <TextView android:id="@+id/tvSummary" style="@style/Caption"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp" android:text="Target resolution" android:textStyle="bold" />
+                <com.google.android.material.chip.ChipGroup android:id="@+id/resGroup"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    app:singleSelection="true" app:selectionRequired="true">
+                    <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:id="@+id/chip1080" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="1080p" />
+                    <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:id="@+id/chip1440" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:checked="true" android:text="1440p" />
+                    <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:id="@+id/chip4k" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="4K" />
+                </com.google.android.material.chip.ChipGroup>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:text="Preference" android:textStyle="bold" />
+                <com.google.android.material.chip.ChipGroup android:id="@+id/prefGroup"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    app:singleSelection="true" app:selectionRequired="true">
+                    <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:id="@+id/chipPerf" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Performance" />
+                    <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:id="@+id/chipQuality" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Image quality" />
+                    <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:id="@+id/chipBalanced" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:checked="true" android:text="Balanced" />
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+        </ScrollView>
+
+        <ProgressBar android:id="@+id/progress" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_gravity="center" android:visibility="gone" />
+    </FrameLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:padding="20dp">
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnBack"
+            style="@style/AppButton.Secondary" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginEnd="12dp"
+            android:text="Back" android:visibility="gone" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnNext"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

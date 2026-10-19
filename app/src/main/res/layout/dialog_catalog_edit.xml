@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:paddingStart="24dp" android:paddingEnd="24dp"
+    android:paddingTop="12dp">
+    <com.google.android.material.textfield.TextInputLayout android:id="@+id/nameLayout"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/etName"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:inputType="textCapWords" android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <Spinner android:id="@+id/spVendor" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="12dp" />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" android:text="Supported technologies" android:textStyle="bold" />
+    <CheckBox android:id="@+id/cbDlss" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="DLSS" />
+    <CheckBox android:id="@+id/cbFsr" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="FSR" />
+    <CheckBox android:id="@+id/cbXess" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="XeSS" />
+    <TextView android:id="@+id/tvTechError" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="Select at least one technology"
+        android:textColor="@color/error" android:visibility="gone" />
+</LinearLayout>

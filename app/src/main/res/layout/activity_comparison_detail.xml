@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <com.google.android.material.appbar.MaterialToolbar android:id="@+id/toolbar"
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+        android:background="@color/background" app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="Comparison" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="20dp">
+            <TextView android:id="@+id/tvTitle" style="@style/Heading" android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView android:id="@+id/tvMeta" style="@style/Caption" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="4dp" />
+            <TextView android:id="@+id/tvRec" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="16dp"
+                android:textSize="32sp" android:textStyle="bold" />
+            <TextView android:id="@+id/tvReason" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="8dp" android:lineSpacingExtra="4dp" />
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/noteLayout"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="24dp" android:hint="Note (optional)">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etNote"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:inputType="textMultiLine" android:minLines="2" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ProgressBar android:id="@+id/progress" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_gravity="center"
+                android:layout_marginTop="12dp" android:visibility="gone" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/btnUpdate"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" android:text="Save changes" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/btnDelete"
+                style="@style/AppButton.Secondary" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="12dp"
+                android:text="Delete comparison" android:textColor="#FFFF0000" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
