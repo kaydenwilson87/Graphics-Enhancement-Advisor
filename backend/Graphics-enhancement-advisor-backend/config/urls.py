@@ -7,12 +7,14 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from advisor.views import (
     AccountRegistrationView,
+    CurrentAccountView,
     CompatibilityViewSet,
     GameViewSet,
     GPUViewSet,
     RecommendationView,
     RecommendationExplanationView,
     ResearchEvidenceViewSet,
+    SavedComparisonViewSet,
     TechnologyViewSet,
 )
 
@@ -22,6 +24,7 @@ router.register("games", GameViewSet)
 router.register("technologies", TechnologyViewSet)
 router.register("compatibility", CompatibilityViewSet)
 router.register("evidence", ResearchEvidenceViewSet)
+router.register("saved-comparisons", SavedComparisonViewSet, basename="saved-comparison")
 
 
 def health_check(request):
@@ -38,6 +41,7 @@ urlpatterns = [
     path("api/v1/auth/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/v1/auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/v1/auth/register/", AccountRegistrationView.as_view(), name="register"),
+    path("api/v1/auth/me/", CurrentAccountView.as_view(), name="current-account"),
     path("api/v1/recommendations/", RecommendationView.as_view(), name="recommendation"),
     path("api/v1/recommendations/explain/", RecommendationExplanationView.as_view(), name="recommendation-explanation"),
     path("api/v1/", include(router.urls)),

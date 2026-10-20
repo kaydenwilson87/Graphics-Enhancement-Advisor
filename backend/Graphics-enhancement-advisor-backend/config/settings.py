@@ -10,7 +10,15 @@ DEVELOPMENT_SECRET_KEY = "local-development-key-change-before-deployment"
 SECRET_KEY = os.getenv("SECRET_KEY", DEVELOPMENT_SECRET_KEY)
 DEBUG = os.getenv("DEBUG", "False").lower() in {"1", "true", "yes"}
 ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",") if host.strip()]
+if DEBUG and "10.0.2.2" not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append("10.0.2.2")  # Android emulator host gateway for local development.
 DATABASE_URL = os.getenv("DATABASE_URL", "")
+# Resolve relative local SQLite URLs against the backend directory, even when the
+# development server is launched with the repository root as its working directory.
+if DATABASE_URL.startswith("sqlite:///") and not DATABASE_URL.startswith("sqlite:////"):
+    sqlite_path = Path(DATABASE_URL[len("sqlite:///"):])
+    if not sqlite_path.is_absolute():
+        DATABASE_URL = f"sqlite:///{BASE_DIR / sqlite_path}"
 if not DEBUG:
     if SECRET_KEY == DEVELOPMENT_SECRET_KEY or len(SECRET_KEY) < 50:
         raise RuntimeError("Set a unique SECRET_KEY of at least 50 characters in production.")
@@ -60,11 +68,16 @@ TEMPLATES = [{
 }]
 WSGI_APPLICATION = "config.wsgi.application"
 
-DATABASES = {"default": dj_database_url.config(
-    default=DATABASE_URL or f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-    conn_max_age=600,
-    conn_health_checks=True,
-)}
+if DATABASE_URL:
+    DATABASES = {"default": dj_database_url.parse(
+        DATABASE_URL, conn_max_age=600, conn_health_checks=True,
+    )}
+else:
+    DATABASES = {"default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+        conn_health_checks=True,
+    )}
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},

@@ -2,19 +2,31 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 
-from .models import Compatibility, Game, GPU, ResearchEvidence, Technology
+from .models import Compatibility, Game, GPU, ResearchEvidence, SavedComparison, Technology
 
 
 class GPUSerializer(serializers.ModelSerializer):
+    supported_technologies = serializers.SerializerMethodField()
+
     class Meta:
         model = GPU
         fields = "__all__"
 
+    def get_supported_technologies(self, obj):
+        return list(obj.compatibilities.filter(status="supported", technology__is_active=True)
+                    .values_list("technology__key", flat=True).distinct())
+
 
 class GameSerializer(serializers.ModelSerializer):
+    supported_technologies = serializers.SerializerMethodField()
+
     class Meta:
         model = Game
         fields = "__all__"
+
+    def get_supported_technologies(self, obj):
+        return list(obj.compatibilities.filter(status="supported", technology__is_active=True)
+                    .values_list("technology__key", flat=True).distinct())
 
 
 class TechnologySerializer(serializers.ModelSerializer):
@@ -77,3 +89,11 @@ class AccountRegistrationSerializer(serializers.Serializer):
 
     def to_representation(self, instance):
         return {"id": instance.pk, "email": instance.email}
+
+
+class SavedComparisonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SavedComparison
+        fields = ["id", "gpu_name", "game_name", "resolution", "preference",
+                  "recommendation", "reason", "note", "created_at"]
+        read_only_fields = ["id", "created_at"]

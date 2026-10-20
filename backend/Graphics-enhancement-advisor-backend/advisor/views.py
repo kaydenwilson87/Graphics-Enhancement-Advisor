@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .ai_explanations import AIExplanationError, explain_recommendation
-from .models import Compatibility, Game, GPU, GlobalAIUsage, ResearchEvidence, Technology, UserAIUsage
+from .models import Compatibility, Game, GPU, GlobalAIUsage, ResearchEvidence, SavedComparison, Technology, UserAIUsage
 from .permissions import ReadOnlyOrStaff
 from .recommendations import recommend
 from .serializers import (
@@ -20,6 +20,7 @@ from .serializers import (
     GPUSerializer,
     RecommendationRequestSerializer,
     ResearchEvidenceSerializer,
+    SavedComparisonSerializer,
     TechnologySerializer,
 )
 
@@ -153,3 +154,28 @@ class RecommendationExplanationView(generics.GenericAPIView):
             result["ai"] = {"used": False, "status": "provider_unavailable",
                             "daily_requests_remaining": remaining}
         return Response(result)
+
+
+class CurrentAccountView(generics.GenericAPIView):
+    """Return the authenticated account summary used by native clients."""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        return Response({
+            "id": request.user.pk,
+            "email": request.user.email,
+            "name": request.user.get_full_name() or request.user.email,
+            "is_staff": request.user.is_staff,
+        })
+
+
+class SavedComparisonViewSet(viewsets.ModelViewSet):
+    """Each authenticated user can only view and change their own saved comparisons."""
+    serializer_class = SavedComparisonSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return SavedComparison.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

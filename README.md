@@ -1,2 +1,2 @@
 # Graphics Enhancement Advisor
-Mobile Application for a College Project
+Android Java mobile application for a college project
