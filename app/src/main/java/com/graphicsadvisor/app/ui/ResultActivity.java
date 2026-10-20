@@ -1,7 +1,6 @@
 package com.graphicsadvisor.app.ui;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -11,15 +10,12 @@ import com.google.android.material.button.MaterialButton;
 import com.graphicsadvisor.app.R;
 import com.graphicsadvisor.app.data.Callback;
 import com.graphicsadvisor.app.data.Repos;
-import com.graphicsadvisor.app.data.Session;
-import com.graphicsadvisor.app.logic.RecommendationEngine;
-import com.graphicsadvisor.app.logic.RecommendationEngine.Result;
-import com.graphicsadvisor.app.model.CatalogItem;
 import com.graphicsadvisor.app.model.Comparison;
+import com.graphicsadvisor.app.model.RecommendationResult;
+import com.graphicsadvisor.app.model.RecommendationResult.Option;
 import com.graphicsadvisor.app.model.Technology;
-import java.util.Map;
 
-/** Shows the recommendation, why, a comparison of all options, limitations, and lets the user save (CREATE). */
+/** Shows the server's recommendation with its evidence, and lets the user save it (CREATE). */
 public class ResultActivity extends AppCompatActivity {
     private MaterialButton btnSave;
     private View progress;
@@ -30,39 +26,21 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         ((MaterialToolbar) findViewById(R.id.toolbar)).setNavigationOnClickListener(v -> finish());
 
-        CatalogItem gpu = (CatalogItem) getIntent().getSerializableExtra("gpu");
-        CatalogItem game = (CatalogItem) getIntent().getSerializableExtra("game");
+        RecommendationResult result = (RecommendationResult) getIntent().getSerializableExtra("result");
+        String gpu = getIntent().getStringExtra("gpu");
+        String game = getIntent().getStringExtra("game");
         String res = getIntent().getStringExtra("res");
         String pref = getIntent().getStringExtra("pref");
-        Result result = RecommendationEngine.evaluate(gpu, game, res, pref);
 
         TextView tvTech = findViewById(R.id.tvTech);
         TextView tvFor = findViewById(R.id.tvFor);
         TextView tvConfidence = findViewById(R.id.tvConfidence);
         ProgressBar bar = findViewById(R.id.barConfidence);
-        TextView tvReasons = findViewById(R.id.tvReasons);
         btnSave = findViewById(R.id.btnSave);
         progress = findViewById(R.id.progress);
 
-        // Comparison and limitations text.
-        StringBuilder cmp = new StringBuilder();
-        for (Technology t : Technology.values()) {
-            Double score = result.scores.get(t);
-            if (score != null) {
-                cmp.append(t.label).append(" — fit score ").append(score).append("/10")
-                        .append(t == result.best ? "  (recommended)" : "").append("\n");
-            } else {
-                cmp.append(t.label).append(" — unavailable: ").append(result.excluded.get(t)).append("\n");
-            }
-        }
-        ((TextView) findViewById(R.id.tvCompare)).setText(cmp.toString().trim());
-
-        StringBuilder lim = new StringBuilder();
-        for (String[] l : RecommendationEngine.LIMITATIONS) {
-            lim.append("• ").append(l[0]).append(": ").append(l[1]).append("\n");
-        }
-        ((TextView) findViewById(R.id.tvLimits)).setText(lim.toString().trim());
-
+        ((TextView) findViewById(R.id.tvCompare)).setText(compareText(result));
+        ((TextView) findViewById(R.id.tvLimits)).setText(limitationsText(result));
         View cardCompare = findViewById(R.id.cardCompare);
         View cardLimits = findViewById(R.id.cardLimits);
         findViewById(R.id.btnCompare).setOnClickListener(v ->
@@ -70,36 +48,34 @@ public class ResultActivity extends AppCompatActivity {
         findViewById(R.id.btnLimitations).setOnClickListener(v ->
                 Ui.show(cardLimits, cardLimits.getVisibility() != View.VISIBLE));
 
-        if (result.best == null) { // no technology works for this GPU + game
+        if (result.techKey == null) { // the server could not recommend anything
             tvTech.setText("No match");
-            tvFor.setText("None of the technologies work for this setup.");
+            tvFor.setText(gpu + " in " + game + " at " + res);
             tvConfidence.setText("");
             bar.setVisibility(View.GONE);
-            StringBuilder why = new StringBuilder();
-            for (Map.Entry<Technology, String> e : result.excluded.entrySet()) {
-                why.append("• ").append(e.getValue()).append("\n");
-            }
-            tvReasons.setText(why.toString().trim());
+            ((TextView) findViewById(R.id.tvReasons)).setText(result.reason);
             btnSave.setVisibility(View.GONE);
             return;
         }
 
-        tvTech.setText(result.best.label);
-        tvTech.setTextColor(result.best.color);
-        tvFor.setText("Recommended for " + gpu.name + " in " + game.name + " at " + res);
-        tvConfidence.setText("Fit score: " + result.bestScore + " / 10");
-        bar.setProgress((int) (result.bestScore * 10));
-        tvReasons.setText("• " + TextUtils.join("\n• ", result.reasons));
+        Technology tech = Technology.fromKey(result.techKey);
+        String label = tech != null ? tech.label : result.techName;
+        tvTech.setText(label);
+        if (tech != null) tvTech.setTextColor(tech.color);
+        tvFor.setText("Recommended for " + gpu + " in " + game + " at " + res);
+        tvConfidence.setText("Confidence: " + capitalise(result.confidence)
+                + " • Evidence score " + result.bestScore + " / 5");
+        bar.setProgress((int) (result.bestScore * 20));
+        ((TextView) findViewById(R.id.tvReasons)).setText(reasonText(result));
 
         btnSave.setOnClickListener(v -> {
             Comparison c = new Comparison();
-            c.userId = Session.current.uid;
-            c.gpuName = gpu.name;
-            c.gameName = game.name;
+            c.gpuName = gpu;
+            c.gameName = game;
             c.resolution = res;
             c.preset = pref;
-            c.recommended = result.best.label;
-            c.reason = TextUtils.join("\n", result.reasons);
+            c.recommended = label;
+            c.reason = result.reason;
             c.note = "";
             btnSave.setEnabled(false);
             Ui.show(progress, true);
@@ -113,5 +89,52 @@ public class ResultActivity extends AppCompatActivity {
                 Ui.snack(btnSave, err);
             }));
         });
+    }
+
+    /** The reason from the server plus the research sources behind the winning option. */
+    private String reasonText(RecommendationResult r) {
+        StringBuilder sb = new StringBuilder(r.reason);
+        for (Option o : r.options) {
+            if (o.techKey != null && o.techKey.equals(r.techKey) && !o.sources.isEmpty()) {
+                sb.append("\n\nSources:");
+                for (String s : o.sources) sb.append("\n• ").append(s);
+            }
+        }
+        return sb.toString();
+    }
+
+    private String compareText(RecommendationResult r) {
+        if (r.options.isEmpty()) return "No compatible technologies were found for this setup.";
+        StringBuilder sb = new StringBuilder();
+        for (Option o : r.options) {
+            sb.append(o.techName);
+            if (o.score >= 0) {
+                sb.append(" — score ").append(o.score).append("/5 (").append(o.evidenceCount).append(" sources)");
+            } else {
+                sb.append(" — no scored evidence yet");
+            }
+            if (o.techKey != null && o.techKey.equals(r.techKey)) sb.append("  (recommended)");
+            appendLine(sb, "Performance", o.performance);
+            appendLine(sb, "Image quality", o.imageQuality);
+            appendLine(sb, "Latency", o.latency);
+            sb.append("\n\n");
+        }
+        return sb.toString().trim();
+    }
+
+    private String limitationsText(RecommendationResult r) {
+        StringBuilder sb = new StringBuilder();
+        for (String l : r.limitations) sb.append("• ").append(l).append("\n");
+        if (sb.length() == 0) sb.append("No specific limitations were reported.\n");
+        if (!r.method.isEmpty()) sb.append("\nMethod: ").append(r.method);
+        return sb.toString().trim();
+    }
+
+    private static void appendLine(StringBuilder sb, String title, String text) {
+        if (!text.isEmpty()) sb.append("\n   ").append(title).append(": ").append(text);
+    }
+
+    private static String capitalise(String s) {
+        return s.isEmpty() ? s : Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
 }

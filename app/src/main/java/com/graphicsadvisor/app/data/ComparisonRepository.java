@@ -3,10 +3,10 @@ package com.graphicsadvisor.app.data;
 import com.graphicsadvisor.app.model.Comparison;
 import java.util.List;
 
-/** Contract for saved comparisons (user CRUD module). */
+/** Contract for the signed-in user's saved comparisons (CRUD module 1). */
 public interface ComparisonRepository {
-    /** Newest first, only the given user's items. */
-    void list(String userId, Callback<List<Comparison>> cb);
+    /** Newest first. The server only returns the current user's items. */
+    void list(Callback<List<Comparison>> cb);
 
     /** Creates the comparison when id is null, otherwise updates it. */
     void save(Comparison c, Callback<Comparison> cb);

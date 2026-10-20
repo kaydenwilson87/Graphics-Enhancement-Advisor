@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
         Repos.catalog().list(CatalogItem.TYPE_GAME, Callback.of(
                 games -> { if (isAdded()) tvGames.setText(String.valueOf(games.size())); },
                 err -> { }));
-        Repos.comparisons().list(Session.current.uid, Callback.of(list -> {
+        Repos.comparisons().list(Callback.of(list -> {
             if (!isAdded()) return;
             tvSaved.setText(String.valueOf(list.size()));
             adapter.submit(list.subList(0, Math.min(3, list.size())));

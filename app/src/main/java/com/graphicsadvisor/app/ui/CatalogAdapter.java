@@ -1,9 +1,6 @@
 package com.graphicsadvisor.app.ui;
 
 import android.graphics.Color;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
 import com.graphicsadvisor.app.R;
 import com.graphicsadvisor.app.model.CatalogItem;
-import com.graphicsadvisor.app.model.Technology;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,19 +49,7 @@ class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter.VH> {
     public void onBindViewHolder(@NonNull VH h, int position) {
         CatalogItem item = items.get(position);
         h.name.setText(item.name);
-
-        // Coloured list of supported technologies, prefixed by the vendor for GPUs.
-        SpannableStringBuilder sb = new SpannableStringBuilder();
-        if (item.vendor != null && !item.vendor.isEmpty()) sb.append(item.vendor).append("   ");
-        for (Technology t : Technology.values()) {
-            if (!item.supports(t)) continue;
-            int start = sb.length();
-            sb.append(t.label).append("  ");
-            sb.setSpan(new ForegroundColorSpan(t.color), start, start + t.label.length(),
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-        h.meta.setText(sb);
-
+        h.meta.setText(item.subtitle());
         boolean selected = item.id.equals(selectedId);
         h.card.setStrokeWidth(selected ? 5 : 2);
         h.card.setStrokeColor(selected ? Color.BLACK : Color.parseColor("#E0E0E0"));
