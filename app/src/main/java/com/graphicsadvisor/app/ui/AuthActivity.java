@@ -83,8 +83,8 @@ public class AuthActivity extends AppCompatActivity {
             emailLayout.setError("Enter a valid email address");
             valid = false;
         }
-        if (password.length() < 10) {
-            passwordLayout.setError("Password must be at least 10 characters");
+        if (password.length() < 8) {
+            passwordLayout.setError("Password must be at least 8 characters");
             valid = false;
         }
         if (!valid) return;

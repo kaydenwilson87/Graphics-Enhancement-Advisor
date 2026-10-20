@@ -11,6 +11,15 @@
     </com.google.android.material.textfield.TextInputLayout>
     <Spinner android:id="@+id/spVendor" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:layout_marginTop="12dp" />
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" android:text="Compatibility is maintained through backend compatibility records." />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" android:text="Supported technologies" android:textStyle="bold" />
+    <CheckBox android:id="@+id/cbDlss" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="DLSS" />
+    <CheckBox android:id="@+id/cbFsr" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="FSR" />
+    <CheckBox android:id="@+id/cbXess" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="XeSS" />
+    <TextView android:id="@+id/tvTechError" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="Select at least one technology"
+        android:textColor="@color/error" android:visibility="gone" />
 </LinearLayout>

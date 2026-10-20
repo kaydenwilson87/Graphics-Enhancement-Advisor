@@ -16,7 +16,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.graphicsadvisor.app.R;
 import com.graphicsadvisor.app.data.Callback;
 import com.graphicsadvisor.app.data.Repos;
-import com.graphicsadvisor.app.data.Session;
 import com.graphicsadvisor.app.model.Comparison;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +62,7 @@ public class ComparisonsFragment extends Fragment {
     public void onResume() { // reload after edits or deletes in the detail screen
         super.onResume();
         Ui.show(progress, true);
-        Repos.comparisons().list(Session.current.uid, Callback.of(list -> {
+        Repos.comparisons().list(Callback.of(list -> {
             if (!isAdded()) return;
             Ui.show(progress, false);
             all.clear();

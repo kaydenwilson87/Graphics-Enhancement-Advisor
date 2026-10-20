@@ -14,6 +14,14 @@ public enum Technology {
         this.color = color;
     }
 
+    /** Matches the backend key ("dlss", "fsr", "xess"); returns null for anything else. */
+    public static Technology fromKey(String key) {
+        for (Technology t : values()) {
+            if (t.name().equalsIgnoreCase(key)) return t;
+        }
+        return null;
+    }
+
     /** Returns the brand colour for a label such as "DLSS" (black if unknown). */
     public static int colorOf(String label) {
         for (Technology t : values()) {

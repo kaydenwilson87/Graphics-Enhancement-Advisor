@@ -3,6 +3,7 @@ package com.graphicsadvisor.app.ui;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
@@ -75,12 +76,19 @@ public class AdminCatalogActivity extends AppCompatActivity {
         TextInputLayout nameLayout = view.findViewById(R.id.nameLayout);
         TextInputEditText etName = view.findViewById(R.id.etName);
         Spinner spVendor = view.findViewById(R.id.spVendor);
+        CheckBox cbDlss = view.findViewById(R.id.cbDlss);
+        CheckBox cbFsr = view.findViewById(R.id.cbFsr);
+        CheckBox cbXess = view.findViewById(R.id.cbXess);
+        TextView tvTechError = view.findViewById(R.id.tvTechError);
 
         nameLayout.setHint(isGpu() ? "GPU name" : "Game name");
         Ui.show(spVendor, isGpu());
         spVendor.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, VENDORS));
         if (existing != null) {
             etName.setText(existing.name);
+            cbDlss.setChecked(existing.dlss);
+            cbFsr.setChecked(existing.fsr);
+            cbXess.setChecked(existing.xess);
             if (isGpu()) spVendor.setSelection(Math.max(0, VENDORS.indexOf(existing.vendor)));
         }
 
@@ -96,9 +104,14 @@ public class AdminCatalogActivity extends AppCompatActivity {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
             String name = Ui.text(etName);
             nameLayout.setError(null);
+            Ui.show(tvTechError, false);
             boolean valid = true;
             if (name.length() < 2) {
                 nameLayout.setError("Enter a name (at least 2 characters)");
+                valid = false;
+            }
+            if (!cbDlss.isChecked() && !cbFsr.isChecked() && !cbXess.isChecked()) {
+                Ui.show(tvTechError, true);
                 valid = false;
             }
             if (!valid) return;
@@ -108,6 +121,9 @@ public class AdminCatalogActivity extends AppCompatActivity {
             item.type = type;
             item.name = name;
             item.vendor = isGpu() ? (String) spVendor.getSelectedItem() : "";
+            item.dlss = cbDlss.isChecked();
+            item.fsr = cbFsr.isChecked();
+            item.xess = cbXess.isChecked();
             Repos.catalog().save(item, Callback.of(saved -> {
                 dialog.dismiss();
                 Ui.snack(tvEmpty, existing == null ? "Added " + name : "Saved " + name);

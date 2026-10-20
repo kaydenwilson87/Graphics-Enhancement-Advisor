@@ -36,7 +36,6 @@ public class ProfileFragment extends Fragment {
         games.setOnClickListener(x -> openAdmin(CatalogItem.TYPE_GAME));
 
         v.findViewById(R.id.btnSignOut).setOnClickListener(x -> {
-            Repos.auth().logout();
             Session.current = null;
             Intent i = new Intent(requireContext(), AuthActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

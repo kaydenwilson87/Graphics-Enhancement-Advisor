@@ -70,6 +70,7 @@ public class NewComparisonActivity extends AppCompatActivity {
 
     private void fail(String message) {
         Ui.show(progress, false);
+        btnNext.setEnabled(true);
         Ui.snack(btnNext, message);
     }
 
@@ -106,12 +107,21 @@ public class NewComparisonActivity extends AppCompatActivity {
             step = 2;
             render();
         } else {
-            Intent i = new Intent(this, ResultActivity.class);
-            i.putExtra("gpu", gpu);
-            i.putExtra("game", game);
-            i.putExtra("res", checkedText(resGroup));
-            i.putExtra("pref", checkedText(prefGroup));
-            startActivity(i);
+            String res = checkedText(resGroup);
+            String pref = checkedText(prefGroup);
+            Ui.show(progress, true);
+            btnNext.setEnabled(false);
+            Repos.recommendations().recommend(gpu, game, res, pref, Callback.of(result -> {
+                Ui.show(progress, false);
+                btnNext.setEnabled(true);
+                Intent i = new Intent(this, ResultActivity.class);
+                i.putExtra("result", result);
+                i.putExtra("gpu", gpu.name);
+                i.putExtra("game", game.name);
+                i.putExtra("res", res);
+                i.putExtra("pref", pref);
+                startActivity(i);
+            }, this::fail));
         }
     }
 
