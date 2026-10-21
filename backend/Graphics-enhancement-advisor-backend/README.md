@@ -1,6 +1,6 @@
 # Graphics Enhancement Advisor API
 
-Django REST backend for the Flutter Graphics Enhancement Advisor described in the supplied assessment brief. Catalog and research information is deliberately stored as editable records; the project does not invent benchmark findings or seed unsupported recommendations.
+Django REST backend for the Android (Java) Graphics Enhancement Advisor described in the supplied assessment brief. Catalog and research information is deliberately stored as editable records; the project does not invent benchmark findings or seed unsupported recommendations.
 
 ## Run locally
 
@@ -30,7 +30,7 @@ The repository includes a production Docker image for platforms that accept a Do
 - `CSRF_TRUSTED_ORIGINS`: exact HTTPS origins when using Django admin through a proxy.
 - `GROQ_API_KEY`: optional; leave unset to keep AI explanations on the deterministic fallback.
 
-Build the image from this directory and deploy it with port `8000` exposed behind the hosting provider's HTTPS proxy. Set the provider's pre-deploy/release command to `python manage.py migrate`; do not run migrations in every web worker at startup. The image runs as an unprivileged user and includes a container health check at `GET /health/`, which checks database connectivity. Create the first administrator with a one-off command such as `python manage.py createsuperuser` using the platform shell. Django rejects a production configuration with the development secret, a short secret, wildcard/empty hosts, SQLite, or no database URL. Do not use SQLite for production: the container filesystem is ephemeral, so use the persistent PostgreSQL database configured in `DATABASE_URL`. `SECURE_SSL_REDIRECT` and HSTS are enabled when `DEBUG=False`; the hosting proxy must set `X-Forwarded-Proto` correctly. The downloaded `google-services.json` is for the Android client's `app/` directory and is not needed by this Django service.
+Build the image from this directory and deploy it with port `8000` exposed behind the hosting provider's HTTPS proxy. Set the provider's pre-deploy/release command to `python manage.py migrate`; do not run migrations in every web worker at startup. The image runs as an unprivileged user and includes a container health check at `GET /health/`, which checks database connectivity. Create the first administrator with a one-off command such as `python manage.py createsuperuser` using the platform shell. Django rejects a production configuration with the development secret, a short secret, wildcard/empty hosts, SQLite, or no database URL. Do not use SQLite for production: the container filesystem is ephemeral, so use the persistent PostgreSQL database configured in `DATABASE_URL`. `SECURE_SSL_REDIRECT` and HSTS are enabled when `DEBUG=False`; the hosting proxy must set `X-Forwarded-Proto` correctly. The Django service is used by the native Android client in the repository root.
 
 ## API
 
@@ -46,6 +46,7 @@ All API routes are under `/api/v1/`.
 | POST | `auth/register/` | Create a gamer account for per-user AI quotas |
 | POST | `auth/token/`, `auth/token/refresh/` | Obtain/refresh JWT tokens |
 | CRUD | `/admin/` | Django administration |
+| CRUD | `saved-comparisons/` | Authenticated per-user comparison history (JWT required) |
 
 Example recommendation body:
 
@@ -64,7 +65,7 @@ The recommendation remains deterministic and evidence-based in Django. An option
 ### Enable the free-tier provider
 
 1. Create a GroqCloud account and API key on its **Free** plan. The account owner must meet Groq's account age requirement. Do not add billing details or upgrade the project if you want to avoid provider charges.
-2. Copy `.env.example` to `.env` and set `GROQ_API_KEY` to the secret key. Keep `.env` out of source control and never put the key in Flutter.
+2. Copy `.env.example` to `.env` and set `GROQ_API_KEY` to the secret key. Keep `.env` out of source control and never put the key in the Android app.
 3. Keep `GROQ_MODEL=openai/gpt-oss-20b`, or select a currently available model in your Groq console.
 4. Run `python manage.py migrate` and restart Django.
 5. Register a gamer account at `POST /api/v1/auth/register/` using `{"email":"gamer@example.com","password":"a-long-unique-password"}`. Use the returned email as the username at `POST /api/v1/auth/token/` to get a JWT.

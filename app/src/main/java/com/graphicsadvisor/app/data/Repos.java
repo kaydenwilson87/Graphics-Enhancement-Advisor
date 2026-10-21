@@ -1,16 +1,17 @@
 package com.graphicsadvisor.app.data;
 
-import com.graphicsadvisor.app.data.api.ApiAuthRepository;
-import com.graphicsadvisor.app.data.api.ApiCatalogRepository;
-import com.graphicsadvisor.app.data.api.ApiComparisonRepository;
-import com.graphicsadvisor.app.data.api.ApiRecommendationRepository;
+import com.graphicsadvisor.app.data.local.LocalAuthRepository;
+import com.graphicsadvisor.app.data.local.LocalCatalogRepository;
+import com.graphicsadvisor.app.data.local.LocalComparisonRepository;
 
-/** Single place where the app picks its data source: the Django backend over HTTP. */
+/**
+ * Single place where the app picks its data source. To switch to Firebase, replace the
+ * three Local* classes below with the Firebase implementations. No screen code changes.
+ */
 public final class Repos {
-    private static final AuthRepository AUTH = new ApiAuthRepository();
-    private static final CatalogRepository CATALOG = new ApiCatalogRepository();
-    private static final ComparisonRepository COMPARISONS = new ApiComparisonRepository();
-    private static final RecommendationRepository RECOMMENDATIONS = new ApiRecommendationRepository();
+    private static final AuthRepository AUTH = new LocalAuthRepository();
+    private static final CatalogRepository CATALOG = new LocalCatalogRepository();
+    private static final ComparisonRepository COMPARISONS = new LocalComparisonRepository();
 
     private Repos() { }
 
@@ -19,6 +20,4 @@ public final class Repos {
     public static CatalogRepository catalog() { return CATALOG; }
 
     public static ComparisonRepository comparisons() { return COMPARISONS; }
-
-    public static RecommendationRepository recommendations() { return RECOMMENDATIONS; }
 }

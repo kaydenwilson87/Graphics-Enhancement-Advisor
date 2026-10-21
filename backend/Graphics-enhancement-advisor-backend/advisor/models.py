@@ -131,3 +131,20 @@ class UserAIUsage(models.Model):
 class GlobalAIUsage(models.Model):
     date = models.DateField(unique=True)
     request_count = models.PositiveSmallIntegerField(default=0)
+
+
+class SavedComparison(TimestampedModel):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="saved_comparisons")
+    gpu_name = models.CharField(max_length=160)
+    game_name = models.CharField(max_length=180)
+    resolution = models.CharField(max_length=8, choices=Compatibility.Resolution.choices)
+    preference = models.CharField(max_length=16, choices=ResearchEvidence.Preference.choices, default="balanced")
+    recommendation = models.CharField(max_length=80)
+    reason = models.TextField(blank=True)
+    note = models.CharField(max_length=200, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.user} / {self.game_name} / {self.recommendation}"
