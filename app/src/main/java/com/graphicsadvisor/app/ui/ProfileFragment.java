@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.graphicsadvisor.app.R;
-import com.graphicsadvisor.app.data.Repos;
 import com.graphicsadvisor.app.data.Session;
 import com.graphicsadvisor.app.model.CatalogItem;
 import com.graphicsadvisor.app.model.User;
@@ -36,7 +35,7 @@ public class ProfileFragment extends Fragment {
         games.setOnClickListener(x -> openAdmin(CatalogItem.TYPE_GAME));
 
         v.findViewById(R.id.btnSignOut).setOnClickListener(x -> {
-            Session.current = null;
+            Session.clear();
             Intent i = new Intent(requireContext(), AuthActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);

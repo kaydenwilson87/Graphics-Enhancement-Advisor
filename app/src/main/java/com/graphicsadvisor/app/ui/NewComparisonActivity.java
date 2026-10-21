@@ -78,7 +78,14 @@ public class NewComparisonActivity extends AppCompatActivity {
     private void render() {
         Ui.show(rv, step < 2);
         Ui.show(step3, step == 2);
-        Ui.show(tvHint, step == 1);
+        // Tell the user why the list is empty instead of showing a blank screen.
+        boolean emptyList = step < 2 && (step == 0 ? gpus : games).isEmpty();
+        Ui.show(tvHint, emptyList);
+        if (emptyList) {
+            tvHint.setText(step == 0
+                    ? "No GPUs found yet. An admin needs to add GPUs first."
+                    : "No games found yet. An admin needs to add games first.");
+        }
         Ui.show(btnBack, step > 0);
         if (step == 0) {
             tvStep.setText("Step 1 of 3 • Choose your GPU");
