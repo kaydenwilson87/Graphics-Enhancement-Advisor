@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
+import com.graphicsadvisor.app.R;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -24,6 +25,13 @@ final class Ui {
 
     static void snack(View anchor, String message) {
         Snackbar.make(anchor, message, Snackbar.LENGTH_LONG).show();
+    }
+
+    /** Error message that stays on screen until the user taps Retry (or swipes it away). */
+    static void snackRetry(View anchor, String message, Runnable retry) {
+        Snackbar.make(anchor, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction(anchor.getContext().getString(R.string.action_retry), v -> retry.run())
+                .show();
     }
 
     /** Trimmed text of an EditText/TextView, never null. */

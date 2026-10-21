@@ -26,6 +26,19 @@ public class ApiAuthRepository implements AuthRepository {
         }, cb);
     }
 
+    @Override
+    public void restore(String refreshToken, Callback<User> cb) {
+        ApiClient.run(() -> {
+            Session.clear();
+            Session.refreshToken = refreshToken;
+            if (!ApiClient.refreshSession()) { // exchanges the refresh token for a new access token
+                Session.clear();
+                throw new ApiClient.ApiException("Your session expired. Please sign in again.");
+            }
+            return loadUser("");
+        }, cb);
+    }
+
     private User signIn(String email, String password) throws Exception {
         Session.clear();
         String username = email.trim().toLowerCase(Locale.ROOT);
@@ -36,10 +49,13 @@ public class ApiAuthRepository implements AuthRepository {
         JSONObject tokens = new JSONObject(r.body);
         Session.accessToken = tokens.getString("access");
         Session.refreshToken = tokens.getString("refresh");
+        return loadUser(username);
+    }
 
-        // The token only proves who you are; /auth/me/ tells us whether you are an admin.
+    /** The token only proves who you are; /auth/me/ tells us the email and whether you are an admin. */
+    private User loadUser(String fallbackEmail) throws Exception {
         JSONObject me = new JSONObject(ApiClient.ensureOk(ApiClient.call("GET", "auth/me/", null)).body);
-        String mail = ApiClient.str(me, "email").isEmpty() ? username : ApiClient.str(me, "email");
+        String mail = ApiClient.str(me, "email").isEmpty() ? fallbackEmail : ApiClient.str(me, "email");
         return new User(String.valueOf(me.getInt("id")), displayName(mail), mail, me.optBoolean("is_staff", false));
     }
 

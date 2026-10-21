@@ -6,11 +6,11 @@
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_marginTop="32dp" android:gravity="center"
-            android:text="GRAPHICS ENHANCEMENT ADVISOR" android:textSize="20sp" android:textStyle="bold"
+            android:text="@string/graphics_enhancement_advisor" android:textSize="20sp" android:textStyle="bold"
             android:textColor="@color/black" />
         <TextView style="@style/Caption" android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_marginTop="8dp" android:gravity="center"
-            android:text="Compare game performance with AI frame-generation technologies" />
+            android:text="@string/compare_game_performance_with" />
 
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/toggle" android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -19,16 +19,16 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/tabLogin" style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
-                android:text="Login" />
+                android:text="@string/login" />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/tabRegister" style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
-                android:text="Register" />
+                android:text="@string/register" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailLayout" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" android:hint="Email">
+            android:layout_marginTop="16dp" android:hint="@string/email">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail" android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:inputType="textEmailAddress" />
@@ -36,7 +36,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordLayout" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" android:hint="Password" app:endIconMode="password_toggle">
+            android:layout_marginTop="16dp" android:hint="@string/password" app:endIconMode="password_toggle">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword" android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:inputType="textPassword" />
@@ -51,6 +51,6 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSubmit" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginTop="24dp" android:text="Sign in" />
+            android:layout_marginTop="24dp" android:text="@string/btn_sign_in" />
     </LinearLayout>
 </ScrollView>

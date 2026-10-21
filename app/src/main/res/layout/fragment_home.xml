@@ -7,11 +7,11 @@
         <TextView android:id="@+id/tvGreeting" style="@style/Heading"
             android:layout_width="match_parent" android:layout_height="wrap_content" />
         <TextView style="@style/Caption" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginTop="4dp" android:text="Compare game performance with AI frame-generation technologies" />
+            android:layout_marginTop="4dp" android:text="@string/compare_game_performance_with" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNew" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" android:text="New comparison" />
+            android:layout_marginTop="20dp" android:text="@string/new_comparison" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp"
@@ -21,26 +21,26 @@
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
                     android:layout_weight="1" android:orientation="vertical">
                     <TextView android:id="@+id/tvGameCount" android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:text="–" android:textSize="26sp" android:textStyle="bold" />
+                        android:layout_height="wrap_content" android:text="@string/placeholder_dash" android:textSize="26sp" android:textStyle="bold" />
                     <TextView style="@style/Caption" android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:text="Tracked games" />
+                        android:layout_height="wrap_content" android:text="@string/tracked_games" />
                 </LinearLayout>
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
                     android:layout_weight="1" android:orientation="vertical">
                     <TextView android:id="@+id/tvSavedCount" android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:text="–" android:textSize="26sp" android:textStyle="bold" />
+                        android:layout_height="wrap_content" android:text="@string/placeholder_dash" android:textSize="26sp" android:textStyle="bold" />
                     <TextView style="@style/Caption" android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:text="Saved comparisons" />
+                        android:layout_height="wrap_content" android:text="@string/saved_comparisons" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:layout_marginTop="24dp" android:text="Recent comparisons"
+            android:layout_marginTop="24dp" android:text="@string/recent_comparisons"
             android:textSize="16sp" android:textStyle="bold" android:textColor="@color/black" />
         <TextView android:id="@+id/tvEmpty" style="@style/Caption" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_marginTop="12dp"
-            android:text="No saved comparisons yet. Tap New comparison to start." android:visibility="gone" />
+            android:text="@string/no_saved_comparisons_yet" android:visibility="gone" />
         <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvRecent"
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_marginTop="8dp" android:nestedScrollingEnabled="false" />

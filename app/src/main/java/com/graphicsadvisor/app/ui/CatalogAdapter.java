@@ -12,6 +12,7 @@ import com.graphicsadvisor.app.R;
 import com.graphicsadvisor.app.model.CatalogItem;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /** Row list for GPUs/games. Used for choosing (wizard) and for admin editing. */
 class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter.VH> {
@@ -19,17 +20,34 @@ class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter.VH> {
         void onClick(CatalogItem item);
     }
 
-    private final List<CatalogItem> items = new ArrayList<>();
+    private final List<CatalogItem> all = new ArrayList<>();   // everything from the server
+    private final List<CatalogItem> items = new ArrayList<>(); // what the search currently shows
     private final Listener listener;
     private String selectedId;
+    private String query = "";
 
     CatalogAdapter(Listener listener) {
         this.listener = listener;
     }
 
     void submit(List<CatalogItem> list) {
+        all.clear();
+        all.addAll(list);
+        applyFilter();
+    }
+
+    /** Shows only items whose name or description contains the text (case-insensitive). */
+    void setQuery(String text) {
+        query = text.trim().toLowerCase(Locale.ROOT);
+        applyFilter();
+    }
+
+    private void applyFilter() {
         items.clear();
-        items.addAll(list);
+        for (CatalogItem item : all) {
+            String haystack = (item.name + " " + item.subtitle()).toLowerCase(Locale.ROOT);
+            if (query.isEmpty() || haystack.contains(query)) items.add(item);
+        }
         notifyDataSetChanged();
     }
 

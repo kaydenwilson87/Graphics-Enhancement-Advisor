@@ -6,9 +6,17 @@
         <com.google.android.material.appbar.MaterialToolbar android:id="@+id/toolbar"
             android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
             android:background="@color/background" app:navigationIcon="?attr/homeAsUpIndicator" />
+        <com.google.android.material.textfield.TextInputLayout android:id="@+id/searchLayout"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginStart="14dp" android:layout_marginEnd="14dp" android:layout_marginBottom="8dp"
+            android:hint="@string/search" app:startIconDrawable="@drawable/ic_search">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etSearch"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="text" android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
         <TextView android:id="@+id/tvEmpty" style="@style/Caption" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:padding="20dp" android:gravity="center"
-            android:text="Nothing here yet. Tap + to add one." android:visibility="gone" />
+            android:text="@string/admin_empty" android:visibility="gone" />
         <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvItems"
             android:layout_width="match_parent" android:layout_height="match_parent"
             android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingBottom="88dp"
@@ -19,6 +27,6 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fabAdd"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_gravity="bottom|end" android:layout_margin="20dp"
-        android:contentDescription="Add" app:backgroundTint="@color/black"
+        android:contentDescription="@string/add" app:backgroundTint="@color/black"
         app:tint="@color/white" android:src="@drawable/ic_add" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

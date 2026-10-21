@@ -4,11 +4,11 @@
     android:orientation="vertical" android:padding="20dp">
 
     <TextView style="@style/Heading" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:text="Comparisons" />
+        android:layout_height="wrap_content" android:text="@string/comparisons" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:layout_marginTop="12dp" android:hint="Search comparisons">
+        android:layout_marginTop="12dp" android:hint="@string/search_comparisons">
         <com.google.android.material.textfield.TextInputEditText android:id="@+id/etSearch"
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:inputType="text" android:maxLines="1" />
@@ -21,16 +21,16 @@
             app:singleLine="true" app:singleSelection="true" app:selectionRequired="true">
             <com.google.android.material.chip.Chip android:id="@+id/chipAll"
                 style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:checked="true" android:text="All" />
+                android:layout_height="wrap_content" android:checked="true" android:text="@string/all" />
             <com.google.android.material.chip.Chip android:id="@+id/chipDlss"
                 style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="DLSS" />
+                android:layout_height="wrap_content" android:text="@string/dlss" />
             <com.google.android.material.chip.Chip android:id="@+id/chipFsr"
                 style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="FSR" />
+                android:layout_height="wrap_content" android:text="@string/fsr" />
             <com.google.android.material.chip.Chip android:id="@+id/chipXess"
                 style="@style/Widget.MaterialComponents.Chip.Choice" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="XeSS" />
+                android:layout_height="wrap_content" android:text="@string/xess" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content" android:layout_gravity="center" android:visibility="gone" />
     <TextView android:id="@+id/tvEmpty" style="@style/Caption" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:layout_marginTop="16dp" android:gravity="center"
-        android:text="No comparisons found." android:visibility="gone" />
+        android:text="@string/no_comparisons_found" android:visibility="gone" />
     <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvComparisons"
         android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
 </LinearLayout>

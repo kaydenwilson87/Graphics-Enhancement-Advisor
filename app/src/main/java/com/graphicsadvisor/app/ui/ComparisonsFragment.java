@@ -61,6 +61,10 @@ public class ComparisonsFragment extends Fragment {
     @Override
     public void onResume() { // reload after edits or deletes in the detail screen
         super.onResume();
+        load();
+    }
+
+    private void load() {
         Ui.show(progress, true);
         Repos.comparisons().list(Callback.of(list -> {
             if (!isAdded()) return;
@@ -71,7 +75,7 @@ public class ComparisonsFragment extends Fragment {
         }, err -> {
             if (!isAdded()) return;
             Ui.show(progress, false);
-            Ui.snack(requireView(), err);
+            Ui.snackRetry(requireView(), err, this::load);
         }));
     }
 

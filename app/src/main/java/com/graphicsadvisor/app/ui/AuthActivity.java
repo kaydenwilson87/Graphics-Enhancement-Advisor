@@ -13,14 +13,17 @@ import com.graphicsadvisor.app.R;
 import com.graphicsadvisor.app.data.Callback;
 import com.graphicsadvisor.app.data.Repos;
 import com.graphicsadvisor.app.data.Session;
+import com.graphicsadvisor.app.data.TokenStore;
 import com.graphicsadvisor.app.model.User;
 
-/** Login and register on one screen (toggle at the top), plus forgot-password. */
+/** Login and register on one screen. Also restores a saved login so users stay signed in. */
 public class AuthActivity extends AppCompatActivity {
+    private static final int MIN_PASSWORD_LENGTH = 10; // the server rejects shorter passwords
+
     private boolean registerMode;
-    private TextInputLayout nameLayout, emailLayout, passwordLayout;
-    private TextInputEditText etName, etEmail, etPassword;
-    private TextView tvError, tvForgot;
+    private TextInputLayout emailLayout, passwordLayout;
+    private TextInputEditText etEmail, etPassword;
+    private TextView tvError;
     private View progress;
     private MaterialButton btnSubmit;
 
@@ -32,14 +35,11 @@ public class AuthActivity extends AppCompatActivity {
             return;
         }
         setContentView(R.layout.activity_auth);
-        nameLayout = findViewById(R.id.nameLayout);
         emailLayout = findViewById(R.id.emailLayout);
         passwordLayout = findViewById(R.id.passwordLayout);
-        etName = findViewById(R.id.etName);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         tvError = findViewById(R.id.tvError);
-        tvForgot = findViewById(R.id.tvForgot);
         progress = findViewById(R.id.progress);
         btnSubmit = findViewById(R.id.btnSubmit);
 
@@ -51,40 +51,47 @@ public class AuthActivity extends AppCompatActivity {
             }
         });
         btnSubmit.setOnClickListener(v -> submit());
-        tvForgot.setOnClickListener(v -> forgotPassword());
         render();
+        restoreSavedLogin();
     }
 
-    /** Updates labels and visible fields for the current mode. */
+    /** If the user signed in before, log them straight back in without asking again. */
+    private void restoreSavedLogin() {
+        String saved = TokenStore.load(this);
+        if (saved == null) return;
+        setLoading(true);
+        Repos.auth().restore(saved, Callback.of(user -> {
+            Session.current = user;
+            TokenStore.save(this, Session.refreshToken); // keep it fresh if the server rotated it
+            openMain();
+        }, message -> setLoading(false))); // expired or server offline: just show the login form
+    }
+
+    /** Updates labels and clears messages for the current mode. */
     private void render() {
-        Ui.show(nameLayout, registerMode);
-        Ui.show(tvForgot, !registerMode);
         Ui.show(tvError, false);
-        btnSubmit.setText(registerMode ? "Create account" : "Sign in");
-        nameLayout.setError(null);
+        btnSubmit.setText(registerMode ? R.string.btn_create_account : R.string.btn_sign_in);
+        passwordLayout.setHelperText(registerMode ? getString(R.string.password_helper, MIN_PASSWORD_LENGTH) : null);
         emailLayout.setError(null);
         passwordLayout.setError(null);
     }
 
     private void submit() {
-        String name = Ui.text(etName);
         String email = Ui.text(etEmail);
         String password = etPassword.getText() == null ? "" : etPassword.getText().toString();
 
-        nameLayout.setError(null);
         emailLayout.setError(null);
         passwordLayout.setError(null);
         boolean valid = true;
-        if (registerMode && name.length() < 2) {
-            nameLayout.setError("Enter your full name");
-            valid = false;
-        }
         if (!Ui.validEmail(email)) {
-            emailLayout.setError("Enter a valid email address");
+            emailLayout.setError(getString(R.string.err_email));
             valid = false;
         }
-        if (password.length() < 8) {
-            passwordLayout.setError("Password must be at least 8 characters");
+        if (password.isEmpty()) {
+            passwordLayout.setError(getString(R.string.err_password_required));
+            valid = false;
+        } else if (registerMode && password.length() < MIN_PASSWORD_LENGTH) {
+            passwordLayout.setError(getString(R.string.err_password_short, MIN_PASSWORD_LENGTH));
             valid = false;
         }
         if (!valid) return;
@@ -92,25 +99,15 @@ public class AuthActivity extends AppCompatActivity {
         setLoading(true);
         Callback<User> cb = Callback.of(user -> {
             Session.current = user;
+            TokenStore.save(this, Session.refreshToken);
             openMain();
         }, message -> {
             setLoading(false);
             tvError.setText(message);
             Ui.show(tvError, true);
         });
-        if (registerMode) Repos.auth().register(name, email, password, cb);
+        if (registerMode) Repos.auth().register(email, password, cb);
         else Repos.auth().login(email, password, cb);
-    }
-
-    private void forgotPassword() {
-        String email = Ui.text(etEmail);
-        if (!Ui.validEmail(email)) {
-            emailLayout.setError("Enter your email above first");
-            return;
-        }
-        Repos.auth().resetPassword(email, Callback.of(
-                msg -> Ui.snack(btnSubmit, msg),
-                err -> Ui.snack(btnSubmit, err)));
     }
 
     private void setLoading(boolean loading) {

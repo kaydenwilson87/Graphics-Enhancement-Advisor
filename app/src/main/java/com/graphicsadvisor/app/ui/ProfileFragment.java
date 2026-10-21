@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.graphicsadvisor.app.R;
 import com.graphicsadvisor.app.data.Session;
+import com.graphicsadvisor.app.data.TokenStore;
 import com.graphicsadvisor.app.model.CatalogItem;
 import com.graphicsadvisor.app.model.User;
 
@@ -24,7 +25,7 @@ public class ProfileFragment extends Fragment {
         ((TextView) v.findViewById(R.id.tvAvatar)).setText(u.name.substring(0, 1).toUpperCase());
         ((TextView) v.findViewById(R.id.tvName)).setText(u.name);
         ((TextView) v.findViewById(R.id.tvEmail)).setText(u.email);
-        ((TextView) v.findViewById(R.id.tvRole)).setText(u.admin ? "Administrator" : "Gamer");
+        ((TextView) v.findViewById(R.id.tvRole)).setText(getString(u.admin ? R.string.role_admin : R.string.role_gamer));
 
         // Admin tools are only shown to admin accounts (and re-checked in AdminCatalogActivity).
         View gpus = v.findViewById(R.id.btnManageGpus);
@@ -35,6 +36,7 @@ public class ProfileFragment extends Fragment {
         games.setOnClickListener(x -> openAdmin(CatalogItem.TYPE_GAME));
 
         v.findViewById(R.id.btnSignOut).setOnClickListener(x -> {
+            TokenStore.clear(requireContext());
             Session.clear();
             Intent i = new Intent(requireContext(), AuthActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

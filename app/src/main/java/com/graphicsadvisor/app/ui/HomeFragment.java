@@ -26,7 +26,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle state) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-        ((TextView) v.findViewById(R.id.tvGreeting)).setText("Welcome back, " + Session.current.name);
+        ((TextView) v.findViewById(R.id.tvGreeting)).setText(getString(R.string.welcome_back, Session.current.name));
         tvGames = v.findViewById(R.id.tvGameCount);
         tvSaved = v.findViewById(R.id.tvSavedCount);
         tvEmpty = v.findViewById(R.id.tvEmpty);
@@ -47,6 +47,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        load();
+    }
+
+    private void load() {
+        // The game count is a nice-to-have, so a failure there is ignored; the list below reports errors.
         Repos.catalog().list(CatalogItem.TYPE_GAME, Callback.of(
                 games -> { if (isAdded()) tvGames.setText(String.valueOf(games.size())); },
                 err -> { }));
@@ -55,6 +60,8 @@ public class HomeFragment extends Fragment {
             tvSaved.setText(String.valueOf(list.size()));
             adapter.submit(list.subList(0, Math.min(3, list.size())));
             Ui.show(tvEmpty, list.isEmpty());
-        }, err -> { if (isAdded()) Ui.snack(requireView(), err); }));
+        }, err -> {
+            if (isAdded()) Ui.snackRetry(requireView(), err, this::load);
+        }));
     }
 }

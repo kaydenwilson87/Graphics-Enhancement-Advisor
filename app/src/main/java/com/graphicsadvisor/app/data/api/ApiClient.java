@@ -84,7 +84,7 @@ public final class ApiClient {
     /** Sends a request with the access token (if signed in). Retries once after refreshing an expired token. */
     public static Response call(String method, String path, JSONObject body) throws ApiException {
         Response r = send(method, path, body, true);
-        if (r.code == 401 && Session.refreshToken != null && refreshAccessToken()) {
+        if (r.code == 401 && Session.refreshToken != null && refreshSession()) {
             r = send(method, path, body, true);
         }
         return r;
@@ -151,7 +151,7 @@ public final class ApiClient {
         return sb.toString();
     }
 
-    private static synchronized boolean refreshAccessToken() {
+    public static synchronized boolean refreshSession() {
         try {
             JSONObject body = new JSONObject().put("refresh", Session.refreshToken);
             Response r = send("POST", "auth/token/refresh/", body, false);
