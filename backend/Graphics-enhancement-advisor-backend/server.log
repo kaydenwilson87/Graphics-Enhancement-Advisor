@@ -1,0 +1,228 @@
+Watching for file changes with StatReloader
+[22/Oct/2026 02:51:55] "GET /api/v1/gpus/ HTTP/1.1" 200 52
+[22/Oct/2026 02:52:24] "GET /api/v1/technologies/ HTTP/1.1" 200 728
+[22/Oct/2026 02:53:24] "POST /api/v1/auth/token/ HTTP/1.1" 200 483
+[22/Oct/2026 02:53:24] "GET /api/v1/auth/me/ HTTP/1.1" 200 90
+[22/Oct/2026 02:53:29] "GET /api/v1/games/?page=1 HTTP/1.1" 200 960
+[22/Oct/2026 02:53:30] "GET /api/v1/saved-comparisons/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 02:53:39] "GET /api/v1/gpus/?page=1 HTTP/1.1" 200 915
+[22/Oct/2026 02:53:39] "GET /api/v1/games/?page=1 HTTP/1.1" 200 960
+[22/Oct/2026 02:54:03] "GET /api/v1/gpus/ HTTP/1.1" 200 915
+[22/Oct/2026 02:54:43] "POST /api/v1/auth/token/refresh/ HTTP/1.1" 200 241
+[22/Oct/2026 02:54:44] "GET /api/v1/auth/me/ HTTP/1.1" 200 90
+[22/Oct/2026 02:54:46] "GET /api/v1/games/?page=1 HTTP/1.1" 200 960
+[22/Oct/2026 02:54:46] "GET /api/v1/saved-comparisons/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 02:54:54] "GET /api/v1/saved-comparisons/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 02:54:59] "GET /api/v1/games/?page=1 HTTP/1.1" 200 960
+[22/Oct/2026 02:54:59] "GET /api/v1/saved-comparisons/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 02:55:01] "GET /api/v1/gpus/?page=1 HTTP/1.1" 200 915
+[22/Oct/2026 02:55:01] "GET /api/v1/games/?page=1 HTTP/1.1" 200 960
+[22/Oct/2026 02:55:16] "POST /api/v1/recommendations/ HTTP/1.1" 200 549
+[22/Oct/2026 02:55:47] "POST /api/v1/recommendations/ HTTP/1.1" 200 552
+[22/Oct/2026 02:56:06] "POST /api/v1/recommendations/ HTTP/1.1" 200 549
+Unauthorized: /api/v1/recommendations/
+[22/Oct/2026 03:01:16] "POST /api/v1/recommendations/ HTTP/1.1" 401 183
+[22/Oct/2026 03:01:17] "POST /api/v1/auth/token/refresh/ HTTP/1.1" 200 241
+[22/Oct/2026 03:01:17] "POST /api/v1/recommendations/ HTTP/1.1" 200 549
+[22/Oct/2026 03:01:23] "GET /api/v1/games/?page=1 HTTP/1.1" 200 960
+[22/Oct/2026 03:01:23] "GET /api/v1/saved-comparisons/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 03:01:59] "GET /api/v1/saved-comparisons/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 03:02:09] "GET /api/v1/saved-comparisons/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 03:02:10] "GET /api/v1/saved-comparisons/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 03:02:10] "GET /api/v1/games/?page=1 HTTP/1.1" 200 960
+[22/Oct/2026 03:02:16] "GET /api/v1/gpus/?page=1 HTTP/1.1" 200 915
+[22/Oct/2026 03:02:16] "GET /api/v1/games/?page=1 HTTP/1.1" 200 960
+[22/Oct/2026 03:02:26] "POST /api/v1/recommendations/ HTTP/1.1" 200 549
+Not Found: /
+[22/Oct/2026 03:15:25] "GET / HTTP/1.1" 404 3175
+Not Found: /favicon.ico
+[22/Oct/2026 03:15:29] "GET /favicon.ico HTTP/1.1" 404 3226
+Not Found: /
+[22/Oct/2026 03:15:57] "GET / HTTP/1.1" 404 3175
+Unauthorized: /api/v1/auth/token/
+[22/Oct/2026 03:18:41] "POST /api/v1/auth/token/ HTTP/1.1" 401 63
+Unauthorized: /api/v1/auth/token/
+[22/Oct/2026 03:19:59] "POST /api/v1/auth/token/ HTTP/1.1" 401 63
+[22/Oct/2026 03:24:21] "POST /api/v1/auth/token/ HTTP/1.1" 200 483
+[22/Oct/2026 03:24:21] "GET /api/v1/auth/me/ HTTP/1.1" 200 99
+[22/Oct/2026 03:24:21] "GET /api/v1/gpus/ HTTP/1.1" 200 915
+[22/Oct/2026 03:24:21] "GET /api/v1/games/ HTTP/1.1" 200 960
+[22/Oct/2026 03:24:50] "DELETE /api/v1/gpus/101/ HTTP/1.1" 204 0
+[22/Oct/2026 03:24:50] "GET /api/v1/gpus/ HTTP/1.1" 200 627
+[22/Oct/2026 03:24:50] "GET /api/v1/games/ HTTP/1.1" 200 960
+[22/Oct/2026 03:24:53] "DELETE /api/v1/gpus/102/ HTTP/1.1" 204 0
+[22/Oct/2026 03:24:53] "GET /api/v1/gpus/ HTTP/1.1" 200 339
+[22/Oct/2026 03:24:53] "GET /api/v1/games/ HTTP/1.1" 200 960
+[22/Oct/2026 03:24:56] "DELETE /api/v1/gpus/103/ HTTP/1.1" 204 0
+[22/Oct/2026 03:24:56] "GET /api/v1/gpus/ HTTP/1.1" 200 52
+[22/Oct/2026 03:24:56] "GET /api/v1/games/ HTTP/1.1" 200 960
+[22/Oct/2026 03:24:59] "DELETE /api/v1/games/201/ HTTP/1.1" 204 0
+[22/Oct/2026 03:24:59] "GET /api/v1/gpus/ HTTP/1.1" 200 52
+[22/Oct/2026 03:24:59] "GET /api/v1/games/ HTTP/1.1" 200 657
+[22/Oct/2026 03:25:03] "DELETE /api/v1/games/202/ HTTP/1.1" 204 0
+[22/Oct/2026 03:25:03] "GET /api/v1/gpus/ HTTP/1.1" 200 52
+[22/Oct/2026 03:25:03] "GET /api/v1/games/ HTTP/1.1" 200 354
+[22/Oct/2026 03:25:06] "DELETE /api/v1/games/203/ HTTP/1.1" 204 0
+[22/Oct/2026 03:25:06] "GET /api/v1/gpus/ HTTP/1.1" 200 52
+[22/Oct/2026 03:25:06] "GET /api/v1/games/ HTTP/1.1" 200 52
+[22/Oct/2026 03:27:20] "POST /api/v1/auth/token/refresh/ HTTP/1.1" 200 241
+[22/Oct/2026 03:27:21] "GET /api/v1/auth/me/ HTTP/1.1" 200 90
+[22/Oct/2026 03:27:24] "GET /api/v1/saved-comparisons/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 03:27:24] "GET /api/v1/games/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 03:28:30] "POST /api/v1/gpus/ HTTP/1.1" 201 229
+[22/Oct/2026 03:28:30] "GET /api/v1/gpus/ HTTP/1.1" 200 281
+[22/Oct/2026 03:28:30] "GET /api/v1/games/ HTTP/1.1" 200 52
+[22/Oct/2026 03:28:51] "GET /api/v1/gpus/?page=1 HTTP/1.1" 200 281
+[22/Oct/2026 03:28:51] "GET /api/v1/games/?page=1 HTTP/1.1" 200 52
+Unauthorized: /api/v1/gpus/
+[22/Oct/2026 03:29:24] "GET /api/v1/gpus/ HTTP/1.1" 401 183
+[22/Oct/2026 03:29:28] "POST /api/v1/auth/token/ HTTP/1.1" 200 483
+[22/Oct/2026 03:29:28] "GET /api/v1/auth/me/ HTTP/1.1" 200 99
+[22/Oct/2026 03:29:28] "GET /api/v1/gpus/ HTTP/1.1" 200 281
+[22/Oct/2026 03:29:28] "GET /api/v1/games/ HTTP/1.1" 200 52
+[22/Oct/2026 03:29:30] "GET /api/v1/gpus/ HTTP/1.1" 200 281
+[22/Oct/2026 03:29:30] "GET /api/v1/games/ HTTP/1.1" 200 52
+[22/Oct/2026 03:31:52] "POST /api/v1/games/ HTTP/1.1" 201 258
+[22/Oct/2026 03:31:52] "GET /api/v1/gpus/ HTTP/1.1" 200 281
+[22/Oct/2026 03:31:52] "GET /api/v1/games/ HTTP/1.1" 200 310
+[22/Oct/2026 03:32:14] "GET /api/v1/saved-comparisons/?page=1 HTTP/1.1" 200 52
+[22/Oct/2026 03:32:14] "GET /api/v1/games/?page=1 HTTP/1.1" 200 310
+[22/Oct/2026 03:32:18] "GET /api/v1/gpus/?page=1 HTTP/1.1" 200 281
+[22/Oct/2026 03:32:18] "GET /api/v1/games/?page=1 HTTP/1.1" 200 310
+Unauthorized: /api/v1/recommendations/
+[22/Oct/2026 03:32:35] "POST /api/v1/recommendations/ HTTP/1.1" 401 183
+[22/Oct/2026 03:32:35] "POST /api/v1/auth/token/refresh/ HTTP/1.1" 200 241
+[22/Oct/2026 03:32:35] "POST /api/v1/recommendations/ HTTP/1.1" 200 554
+[22/Oct/2026 03:32:54] "POST /api/v1/recommendations/ HTTP/1.1" 200 554
+[22/Oct/2026 03:33:26] "POST /api/v1/recommendations/ HTTP/1.1" 200 552
+Unauthorized: /api/v1/gpus/
+[22/Oct/2026 03:34:58] "GET /api/v1/gpus/ HTTP/1.1" 401 183
+[22/Oct/2026 03:35:02] "POST /api/v1/auth/token/ HTTP/1.1" 200 483
+[22/Oct/2026 03:35:02] "GET /api/v1/auth/me/ HTTP/1.1" 200 99
+[22/Oct/2026 03:35:02] "GET /api/v1/gpus/ HTTP/1.1" 200 281
+[22/Oct/2026 03:35:02] "GET /api/v1/games/ HTTP/1.1" 200 310
+Unauthorized: /api/v1/gpus/
+[22/Oct/2026 04:10:40] "GET /api/v1/gpus/ HTTP/1.1" 401 183
+[22/Oct/2026 04:10:44] "POST /api/v1/auth/token/ HTTP/1.1" 200 483
+[22/Oct/2026 04:10:44] "GET /api/v1/auth/me/ HTTP/1.1" 200 99
+[22/Oct/2026 04:10:44] "GET /api/v1/gpus/ HTTP/1.1" 200 281
+[22/Oct/2026 04:10:44] "GET /api/v1/games/ HTTP/1.1" 200 310
+[22/Oct/2026 04:10:48] "GET /api/v1/gpus/ HTTP/1.1" 200 281
+[22/Oct/2026 04:10:48] "GET /api/v1/games/ HTTP/1.1" 200 310
+[22/Oct/2026 04:10:50] "GET /api/v1/gpus/ HTTP/1.1" 200 281
+[22/Oct/2026 04:10:50] "GET /api/v1/games/ HTTP/1.1" 200 310
+[22/Oct/2026 04:10:51] "GET /api/v1/gpus/ HTTP/1.1" 200 281
+[22/Oct/2026 04:10:51] "GET /api/v1/games/ HTTP/1.1" 200 310
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/recommendations.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 02:51:41
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/compatibility_sync.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 05:18:03
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/recommendations.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 05:18:26
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/recommendations.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 05:18:44
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/compatibility_sync.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 05:18:52
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/serializers.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 05:25:36
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/compatibility_sync.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 1 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): advisor.
+Run 'python manage.py migrate' to apply them.
+October 22, 2026 - 05:25:48
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 05:26:53
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 05:28:26
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/compatibility_sync.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 05:28:38
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/advisor/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 05:29:35
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
