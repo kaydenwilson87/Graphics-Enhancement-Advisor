@@ -23,6 +23,7 @@
     <string name="empty_games">No games found yet. An admin needs to add games first.</string>
     <string name="no_matches">No matches found.</string>
     <string name="result_no_match">No match</string>
+    <string name="result_compatible_unranked">Compatible options (not ranked)</string>
     <string name="result_for">Recommended for %1$s in %2$s at %3$s</string>
     <string name="result_setup">%1$s in %2$s at %3$s</string>
     <string name="result_confidence">Confidence: %1$s • Evidence score %2$s / 5</string>

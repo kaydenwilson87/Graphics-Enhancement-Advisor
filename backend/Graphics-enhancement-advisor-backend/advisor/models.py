@@ -81,6 +81,9 @@ class Compatibility(TimestampedModel):
     image_quality_summary = models.TextField(blank=True)
     latency_summary = models.TextField(blank=True)
     limitations = models.TextField(blank=True)
+    # Source-generated suggestions stay out of recommendations until staff review.
+    is_verified = models.BooleanField(default=True)
+    is_rejected = models.BooleanField(default=False)
     class Meta:
         ordering = ["technology__key", "resolution"]
         constraints = [models.UniqueConstraint(fields=["gpu", "game", "technology", "resolution"], name="unique_gpu_game_technology_resolution")]

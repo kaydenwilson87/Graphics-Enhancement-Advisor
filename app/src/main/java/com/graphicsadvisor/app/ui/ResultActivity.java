@@ -50,7 +50,8 @@ public class ResultActivity extends AppCompatActivity {
                 Ui.show(cardLimits, cardLimits.getVisibility() != View.VISIBLE));
 
         if (result.techKey == null) { // the server could not recommend anything
-            tvTech.setText(R.string.result_no_match);
+            tvTech.setText(result.options.isEmpty()
+                    ? R.string.result_no_match : R.string.result_compatible_unranked);
             tvFor.setText(getString(R.string.result_setup, gpu, game, res));
             tvConfidence.setText("");
             bar.setVisibility(View.GONE);

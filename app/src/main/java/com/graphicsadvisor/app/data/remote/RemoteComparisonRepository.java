@@ -17,11 +17,11 @@ import java.util.TimeZone;
 public final class RemoteComparisonRepository implements ComparisonRepository {
     private static final String PATH = "api/v1/saved-comparisons/";
 
-    @Override public void list(String userId, Callback<List<Comparison>> cb) {
+    @Override public void list(Callback<List<Comparison>> cb) {
         ApiClient.request("GET", PATH, null, Callback.of(data -> {
             JSONArray rows=data.optJSONArray("results"); if(rows==null) rows=new JSONArray();
             List<Comparison> items=new ArrayList<>();
-            for(int i=0;i<rows.length();i++) { JSONObject row=rows.optJSONObject(i); if(row!=null) items.add(fromJson(row,userId)); }
+            for(int i=0;i<rows.length();i++) { JSONObject row=rows.optJSONObject(i); if(row!=null) items.add(fromJson(row)); }
             cb.onSuccess(items);
         },cb::onError));
     }
@@ -32,15 +32,15 @@ public final class RemoteComparisonRepository implements ComparisonRepository {
             body.put("preference",apiPreference(c.preset)); body.put("recommendation",c.recommended); body.put("reason",c.reason); body.put("note",c.note==null?"":c.note);
         } catch(Exception e) { cb.onError("Could not prepare this saved comparison."); return; }
         boolean create=c.id==null;
-        ApiClient.request(create?"POST":"PATCH",PATH+(create?"":c.id+"/"),body,Callback.of(row->{
-            Comparison saved=fromJson(row,c.userId); c.id=saved.id; c.createdAt=saved.createdAt; cb.onSuccess(saved);
+        ApiClient.request(create?"POST":"PUT",PATH+(create?"":c.id+"/"),body,Callback.of(row->{
+            Comparison saved=fromJson(row); c.id=saved.id; c.createdAt=saved.createdAt; cb.onSuccess(saved);
         },cb::onError));
     }
     @Override public void delete(Comparison c, Callback<Void> cb) {
         ApiClient.request("DELETE",PATH+c.id+"/",null,Callback.of(ignored->cb.onSuccess(null),cb::onError));
     }
-    private Comparison fromJson(JSONObject row,String userId) {
-        Comparison c=new Comparison(); c.id=row.optString("id"); c.userId=userId; c.gpuName=row.optString("gpu_name");
+    private Comparison fromJson(JSONObject row) {
+        Comparison c=new Comparison(); c.id=row.optString("id"); c.gpuName=row.optString("gpu_name");
         c.gameName=row.optString("game_name"); c.resolution=displayResolution(row.optString("resolution")); c.preset=displayPreference(row.optString("preference"));
         c.recommended=row.optString("recommendation"); c.reason=row.optString("reason"); c.note=row.optString("note");
         c.createdAt=parseDate(row.optString("created_at")); return c;

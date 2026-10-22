@@ -18,6 +18,10 @@ python manage.py runserver
 
 The default local database is SQLite. Set `DATABASE_URL` to a PostgreSQL URL in deployment, for example `postgresql://user:password@localhost:5432/gea`. Configure a strong `SECRET_KEY`, `ALLOWED_HOSTS`, `DEBUG=False`, and HTTPS before deployment.
 
+### Optional demo fixture
+
+For a disposable demo database, load `advisor/fixtures/demo_data.json` with `python manage.py loaddata demo_data`. It contains three clearly named synthetic GPUs, three synthetic games, 81 compatibility rows marked `unknown`, and three inactive `DEMO PLACEHOLDER` evidence rows with no scores. These records support UI and API demonstrations only; they do not assert actual compatibility or benchmark results. Replace them with verified, cited data before submission. Do not rename placeholder evidence as a real source or infer compatibility from these rows.
+
 ## Deploy with Docker
 
 The repository includes a production Docker image for platforms that accept a Dockerfile. Provide these environment variables in the hosting platform's secret/configuration settings:
@@ -41,7 +45,7 @@ All API routes are under `/api/v1/`.
 | GET | `gpus/`, `games/`, `technologies/` | Browse active catalog entries |
 | GET | `compatibility/` | Browse compatibility records; filter by `gpu`, `game`, `technology`, `resolution`, `status` |
 | GET | `evidence/` | Browse research evidence; filter/search by technology, game, GPU, resolution, preference or source text |
-| POST | `recommendations/` | Generate an evidence-based recommendation |
+| POST | `recommendations/` | Refresh game-upscaler compatibility from PCGamingWiki when available, then generate an evidence-based recommendation |
 | POST | `recommendations/explain/` | Authenticated, quota-limited explanation of a supported recommendation |
 | POST | `auth/register/` | Create a gamer account for per-user AI quotas |
 | POST | `auth/token/`, `auth/token/refresh/` | Obtain/refresh JWT tokens |
@@ -55,6 +59,12 @@ Example recommendation body:
 ```
 
 `preference` accepts `performance`, `image_quality`, or `balanced`. The response includes the recommendation (or `null` if evidence is insufficient), score-ranked compatible options, supporting evidence, a reason, confidence, limitations, and the scoring method. Score fields in research records use a 1–5 scale; higher latency score means a more favorable latency result. Technologies without a supported matching compatibility record are not recommended. Add actual source-backed GPU, game, compatibility, and evidence records through `/admin/` before relying on results.
+
+### Automatic game-upscaler compatibility lookup
+
+When staff add a game or GPU, the backend checks the maintained source for the new catalog pairs; each comparison request also refreshes its selected pair. [PCGamingWiki's high-fidelity upscaling list](https://www.pcgamingwiki.com/wiki/List_of_games_that_support_high-fidelity_upscaling) results are cached for six hours; a failed source request is briefly cached to avoid repeatedly delaying requests. The sync records a citation and explicit limitations, does not overwrite compatibility rows entered or reviewed by an administrator, and does not create performance scores. Automatically generated compatibility rows are pending suggestions, excluded from user recommendations until a staff administrator approves them in the PHP admin portal. Dismissed suggestions remain dismissed across future syncs. A missing/unconfirmed title remains `unknown`; it is not treated as unsupported. PCGamingWiki is community-maintained and its content is CC BY-NC-SA unless otherwise noted; retain attribution and review its terms before redistributing synced data.
+
+This source establishes listed game integrations, not benchmark performance, support at a particular resolution, or a guarantee for every GPU/driver/version. Admins should review each suggestion's source and limitations before approval. Compatible options without scored research evidence are shown to users as compatible but unranked. Admins still need trustworthy benchmark evidence before the app can rank options.
 
 Catalog endpoints allow public reads. Write operations require an authenticated staff account (JWT bearer token or Django admin session). Enable TLS in deployment; CORS origins are configured with `CORS_ALLOWED_ORIGINS`.
 

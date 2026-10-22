@@ -13,7 +13,7 @@ class GPUSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_supported_technologies(self, obj):
-        return list(obj.compatibilities.filter(status="supported", technology__is_active=True)
+        return list(obj.compatibilities.filter(status="supported", is_verified=True, technology__is_active=True)
                     .values_list("technology__key", flat=True).distinct())
 
 
@@ -25,7 +25,7 @@ class GameSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_supported_technologies(self, obj):
-        return list(obj.compatibilities.filter(status="supported", technology__is_active=True)
+        return list(obj.compatibilities.filter(status="supported", is_verified=True, technology__is_active=True)
                     .values_list("technology__key", flat=True).distinct())
 
 
@@ -40,6 +40,15 @@ class CompatibilitySerializer(serializers.ModelSerializer):
     game_name = serializers.CharField(source="game.name", read_only=True)
     technology_name = serializers.CharField(source="technology.name", read_only=True)
     technology_key = serializers.CharField(source="technology.key", read_only=True)
+    source_url = serializers.SerializerMethodField()
+
+    def get_source_url(self, obj):
+        if not obj.limitations.startswith("Auto-synced from PCGamingWiki:"):
+            return ""
+        evidence = ResearchEvidence.objects.filter(
+            game=obj.game, technology=obj.technology, source_title__contains="automatic sync",
+        ).only("source_url").first()
+        return evidence.source_url if evidence else ""
 
     class Meta:
         model = Compatibility

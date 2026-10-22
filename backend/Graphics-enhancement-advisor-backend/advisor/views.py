@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .ai_explanations import AIExplanationError, explain_recommendation
+from .compatibility_sync import RESOLUTIONS, sync_game_compatibility
 from .models import Compatibility, Game, GPU, GlobalAIUsage, ResearchEvidence, SavedComparison, Technology, UserAIUsage
 from .permissions import ReadOnlyOrStaff
 from .recommendations import recommend
@@ -36,12 +37,28 @@ class GPUViewSet(CatalogViewSet):
     ordering_fields = ["name", "manufacturer"]
     filterset_fields = ["manufacturer"]
 
+    def perform_create(self, serializer):
+        gpu = serializer.save()
+        _prepare_compatibility_suggestions(gpus=[gpu], games=Game.objects.filter(is_active=True))
+
 
 class GameViewSet(CatalogViewSet):
     serializer_class = GameSerializer
     queryset = Game.objects.filter(is_active=True)
     search_fields = ["name", "developer", "engine"]
     ordering_fields = ["name", "release_year"]
+
+    def perform_create(self, serializer):
+        game = serializer.save()
+        _prepare_compatibility_suggestions(gpus=GPU.objects.filter(is_active=True), games=[game])
+
+
+def _prepare_compatibility_suggestions(*, gpus, games):
+    """Create source-backed, pending proposals after a staff catalog addition."""
+    for game in games:
+        for gpu in gpus:
+            for resolution in RESOLUTIONS:
+                sync_game_compatibility(game=game, gpu=gpu, resolution=resolution)
 
 
 class TechnologyViewSet(CatalogViewSet):
@@ -71,10 +88,22 @@ class RecommendationView(generics.GenericAPIView):
         values = serializer.validated_data
         gpu = get_object_or_404(GPU, pk=values["gpu_id"], is_active=True)
         game = get_object_or_404(Game, pk=values["game_id"], is_active=True)
+        # Refresh the selected pair from the cached public catalog. A failed
+        # lookup is non-fatal: recommend() will continue using stored data.
+        sync_result = sync_game_compatibility(gpu=gpu, game=game, resolution=values["resolution"])
         try:
             result = recommend(gpu=gpu, game=game, resolution=values["resolution"], preference=values["preference"])
         except (TypeError, ValueError) as exc:
             raise ValidationError({"detail": "The recommendation could not be generated from the stored data."}) from exc
+        if not sync_result["synced"]:
+            result["limitations"].append(
+                "Automatic compatibility lookup is temporarily unavailable; no new source claims were added."
+            )
+        result["compatibility_source"] = {
+            "url": sync_result["source_url"],
+            "synced": sync_result["synced"],
+            "game_found": sync_result["game_found"],
+        }
         return Response(result)
 
 
