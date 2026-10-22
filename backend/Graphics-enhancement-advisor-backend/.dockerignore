@@ -1,5 +1,6 @@
 .git
 .venv
+.pythonVirtual
 venv
 __pycache__
 *.py[cod]
@@ -8,3 +9,6 @@ __pycache__
 !.env.example
 db.sqlite3
 staticfiles
+server.log
+.idea
+.vscode

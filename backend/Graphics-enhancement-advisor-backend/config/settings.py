@@ -10,8 +10,11 @@ DEVELOPMENT_SECRET_KEY = "local-development-key-change-before-deployment"
 SECRET_KEY = os.getenv("SECRET_KEY", DEVELOPMENT_SECRET_KEY)
 DEBUG = os.getenv("DEBUG", "False").lower() in {"1", "true", "yes"}
 ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",") if host.strip()]
-if DEBUG and "10.0.2.2" not in ALLOWED_HOSTS:
-    ALLOWED_HOSTS.append("10.0.2.2")  # Android emulator host gateway for local development.
+if DEBUG:
+    if "10.0.2.2" not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append("10.0.2.2")  # Android emulator host gateway for local development.
+    if "*" not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append("*")  # Physical device local development.
 DATABASE_URL = os.getenv("DATABASE_URL", "")
 # Resolve relative local SQLite URLs against the backend directory, even when the
 # development server is launched with the repository root as its working directory.

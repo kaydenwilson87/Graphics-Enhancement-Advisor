@@ -52,6 +52,10 @@ python manage.py runserver 0.0.0.0:8000
 
 Check it at `http://127.0.0.1:8000/health/`. The default local database is SQLite and needs no setup.
 
+## Deployment
+
+The production URL split, Django environment variables, Android build setting, and PHP admin configuration are documented in [DEPLOYMENT.md](DEPLOYMENT.md). The Netlify URL hosts the frontend; deploy Django separately and point both Android and PHP admin at the Django API URL.
+
 **Demo data (optional).** If `advisor/fixtures/demo_data.json` is present, load it on a fresh database with
 `python manage.py loaddata demo_data`. Otherwise add GPUs and games in the app's admin screens, and
 compatibility and research evidence rows at `http://127.0.0.1:8000/admin/`. The server only recommends
