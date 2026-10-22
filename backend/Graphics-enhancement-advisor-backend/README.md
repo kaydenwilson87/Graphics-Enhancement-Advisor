@@ -16,7 +16,9 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-The default local database is SQLite. Set `DATABASE_URL` to a PostgreSQL URL in deployment, for example `postgresql://user:password@localhost:5432/gea`. Configure a strong `SECRET_KEY`, `ALLOWED_HOSTS`, `DEBUG=False`, and HTTPS before deployment.
+The default local database is SQLite (`db.sqlite3`). In deployment, set `DATABASE_URL` to the connection URL for a persistent, managed PostgreSQL database; the application then uses PostgreSQL as its shared database. These databases are alternatives for each running backend, not a live SQLite-to-PostgreSQL replication pair: local SQLite records are not automatically copied to production. Configure a strong `SECRET_KEY`, `ALLOWED_HOSTS`, `DEBUG=False`, and HTTPS before deployment.
+
+Saved comparisons are already associated with the authenticated account and stored through the backend API. When the Android app is connected and signed in, its saved-comparison operations use that API, so those records are shared through the deployment's PostgreSQL database. The app does not currently maintain an offline SQLite copy of those records or automatically merge pre-existing device-local records; SQLite here is the backend's local-development database.
 
 ### Optional demo fixture
 
@@ -34,7 +36,7 @@ The repository includes a production Docker image for platforms that accept a Do
 - `CSRF_TRUSTED_ORIGINS`: exact HTTPS origins when using Django admin through a proxy.
 - `GROQ_API_KEY`: optional; leave unset to keep AI explanations on the deterministic fallback.
 
-Build the image from this directory and deploy it with port `8000` exposed behind the hosting provider's HTTPS proxy. Set the provider's pre-deploy/release command to `python manage.py migrate`; do not run migrations in every web worker at startup. The image runs as an unprivileged user and includes a container health check at `GET /health/`, which checks database connectivity. Create the first administrator with a one-off command such as `python manage.py createsuperuser` using the platform shell. Django rejects a production configuration with the development secret, a short secret, wildcard/empty hosts, SQLite, or no database URL. Do not use SQLite for production: the container filesystem is ephemeral, so use the persistent PostgreSQL database configured in `DATABASE_URL`. `SECURE_SSL_REDIRECT` and HSTS are enabled when `DEBUG=False`; the hosting proxy must set `X-Forwarded-Proto` correctly. The Django service is used by the native Android client in the repository root.
+Create a PostgreSQL database with your hosting provider, then add its connection URL as the deployment's `DATABASE_URL` secret/configuration value (never commit production credentials). Build the image from this directory and deploy it with port `8000` exposed behind the hosting provider's HTTPS proxy. Set the provider's pre-deploy/release command to `python manage.py migrate`; do not run migrations in every web worker at startup. The image runs as an unprivileged user and includes a container health check at `GET /health/`, which checks database connectivity. Create the first administrator with a one-off command such as `python manage.py createsuperuser` using the platform shell. Django rejects a production configuration with the development secret, a short secret, wildcard/empty hosts, SQLite, or no database URL. Do not use SQLite for production: the container filesystem is ephemeral, so use the persistent PostgreSQL database configured in `DATABASE_URL`. `SECURE_SSL_REDIRECT` and HSTS are enabled when `DEBUG=False`; the hosting proxy must set `X-Forwarded-Proto` correctly. The Django service is used by the native Android client in the repository root.
 
 ## API
 

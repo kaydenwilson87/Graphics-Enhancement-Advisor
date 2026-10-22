@@ -226,3 +226,13 @@ Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
 
 Watching for file changes with StatReloader
+/Users/Donel/Downloads/Project/Graphics-Enhancement-Advisor/backend/Graphics-enhancement-advisor-backend/config/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 22, 2026 - 05:29:44
+Django version 4.2.30, using settings 'config.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Watching for file changes with StatReloader
