@@ -9,7 +9,7 @@ from compatibility records and research evidence held on the server, and the app
 confidence level and known limitations.
 
 > College group project, Deliverable 4 (implementation).
-> Team: **[add team member names]** | Course: **[add course / module name]**
+> Team: **Kayden Wilson, Donel Kia Nzambi, Ismail Peterson, Kabanga Kalonji Christian Kabedi, Sebastian Duvenhage, Sinaso Martins** | Course: **ITMDA**
 
 ## Features
 
@@ -109,6 +109,3 @@ Hosts on free plans may sleep when idle, so the first request after a quiet peri
 - Recommendations are only as good as the evidence entered. Placeholder or demo evidence must be replaced with real, cited sources.
 - Compatibility suggestions fetched automatically from a public source stay out of results until staff verify them.
 
-## Screenshots
-
-*(Add screenshots of the login, wizard, result, saved comparisons and admin screens here.)*
