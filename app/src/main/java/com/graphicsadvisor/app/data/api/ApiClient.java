@@ -119,8 +119,8 @@ public final class ApiClient {
         try {
             c = (HttpURLConnection) new URL(ApiConfig.BASE_URL + path).openConnection();
             c.setRequestMethod(method);
-            c.setConnectTimeout(10000);
-            c.setReadTimeout(20000);
+            c.setConnectTimeout(30000);
+            c.setReadTimeout(90000);
             c.setRequestProperty("Accept", "application/json");
             if (withToken && Session.accessToken != null) {
                 c.setRequestProperty("Authorization", "Bearer " + Session.accessToken);

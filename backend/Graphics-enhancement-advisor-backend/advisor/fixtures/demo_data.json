@@ -1,0 +1,1532 @@
+[
+ {
+  "model": "advisor.gpu",
+  "pk": 1,
+  "fields": {
+   "name": "RTX 4070 Super",
+   "manufacturer": "NVIDIA",
+   "architecture": "Ada Lovelace",
+   "notes": "",
+   "is_active": true,
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.gpu",
+  "pk": 2,
+  "fields": {
+   "name": "RX 7800 XT",
+   "manufacturer": "AMD",
+   "architecture": "RDNA 3",
+   "notes": "",
+   "is_active": true,
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.gpu",
+  "pk": 3,
+  "fields": {
+   "name": "Arc B580",
+   "manufacturer": "Intel",
+   "architecture": "Battlemage",
+   "notes": "",
+   "is_active": true,
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.game",
+  "pk": 1,
+  "fields": {
+   "name": "Cyberpunk 2077",
+   "developer": "CD PROJEKT RED",
+   "engine": "REDengine",
+   "release_year": 2020,
+   "notes": "",
+   "is_active": true,
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.game",
+  "pk": 2,
+  "fields": {
+   "name": "Alan Wake 2",
+   "developer": "Remedy Entertainment",
+   "engine": "Northlight",
+   "release_year": 2023,
+   "notes": "",
+   "is_active": true,
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.game",
+  "pk": 3,
+  "fields": {
+   "name": "Starfield",
+   "developer": "Bethesda Game Studios",
+   "engine": "Creation Engine 2",
+   "release_year": 2023,
+   "notes": "",
+   "is_active": true,
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 1,
+  "fields": {
+   "gpu": 1,
+   "game": 1,
+   "technology": 1,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 2,
+  "fields": {
+   "gpu": 1,
+   "game": 1,
+   "technology": 1,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 3,
+  "fields": {
+   "gpu": 1,
+   "game": 1,
+   "technology": 1,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 4,
+  "fields": {
+   "gpu": 1,
+   "game": 1,
+   "technology": 2,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 5,
+  "fields": {
+   "gpu": 1,
+   "game": 1,
+   "technology": 2,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 6,
+  "fields": {
+   "gpu": 1,
+   "game": 1,
+   "technology": 2,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 7,
+  "fields": {
+   "gpu": 1,
+   "game": 1,
+   "technology": 3,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 8,
+  "fields": {
+   "gpu": 1,
+   "game": 1,
+   "technology": 3,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 9,
+  "fields": {
+   "gpu": 1,
+   "game": 1,
+   "technology": 3,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 10,
+  "fields": {
+   "gpu": 1,
+   "game": 2,
+   "technology": 1,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 11,
+  "fields": {
+   "gpu": 1,
+   "game": 2,
+   "technology": 1,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 12,
+  "fields": {
+   "gpu": 1,
+   "game": 2,
+   "technology": 1,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 13,
+  "fields": {
+   "gpu": 1,
+   "game": 2,
+   "technology": 2,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 14,
+  "fields": {
+   "gpu": 1,
+   "game": 2,
+   "technology": 2,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 15,
+  "fields": {
+   "gpu": 1,
+   "game": 2,
+   "technology": 2,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 16,
+  "fields": {
+   "gpu": 1,
+   "game": 2,
+   "technology": 3,
+   "resolution": "1080p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 17,
+  "fields": {
+   "gpu": 1,
+   "game": 2,
+   "technology": 3,
+   "resolution": "1440p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 18,
+  "fields": {
+   "gpu": 1,
+   "game": 2,
+   "technology": 3,
+   "resolution": "2160p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 19,
+  "fields": {
+   "gpu": 1,
+   "game": 3,
+   "technology": 1,
+   "resolution": "1080p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 20,
+  "fields": {
+   "gpu": 1,
+   "game": 3,
+   "technology": 1,
+   "resolution": "1440p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 21,
+  "fields": {
+   "gpu": 1,
+   "game": 3,
+   "technology": 1,
+   "resolution": "2160p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 22,
+  "fields": {
+   "gpu": 1,
+   "game": 3,
+   "technology": 2,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 23,
+  "fields": {
+   "gpu": 1,
+   "game": 3,
+   "technology": 2,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 24,
+  "fields": {
+   "gpu": 1,
+   "game": 3,
+   "technology": 2,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 25,
+  "fields": {
+   "gpu": 1,
+   "game": 3,
+   "technology": 3,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 26,
+  "fields": {
+   "gpu": 1,
+   "game": 3,
+   "technology": 3,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 27,
+  "fields": {
+   "gpu": 1,
+   "game": 3,
+   "technology": 3,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 28,
+  "fields": {
+   "gpu": 2,
+   "game": 1,
+   "technology": 1,
+   "resolution": "1080p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 29,
+  "fields": {
+   "gpu": 2,
+   "game": 1,
+   "technology": 1,
+   "resolution": "1440p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 30,
+  "fields": {
+   "gpu": 2,
+   "game": 1,
+   "technology": 1,
+   "resolution": "2160p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 31,
+  "fields": {
+   "gpu": 2,
+   "game": 1,
+   "technology": 2,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 32,
+  "fields": {
+   "gpu": 2,
+   "game": 1,
+   "technology": 2,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 33,
+  "fields": {
+   "gpu": 2,
+   "game": 1,
+   "technology": 2,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 34,
+  "fields": {
+   "gpu": 2,
+   "game": 1,
+   "technology": 3,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 35,
+  "fields": {
+   "gpu": 2,
+   "game": 1,
+   "technology": 3,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 36,
+  "fields": {
+   "gpu": 2,
+   "game": 1,
+   "technology": 3,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 37,
+  "fields": {
+   "gpu": 2,
+   "game": 2,
+   "technology": 1,
+   "resolution": "1080p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 38,
+  "fields": {
+   "gpu": 2,
+   "game": 2,
+   "technology": 1,
+   "resolution": "1440p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 39,
+  "fields": {
+   "gpu": 2,
+   "game": 2,
+   "technology": 1,
+   "resolution": "2160p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 40,
+  "fields": {
+   "gpu": 2,
+   "game": 2,
+   "technology": 2,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 41,
+  "fields": {
+   "gpu": 2,
+   "game": 2,
+   "technology": 2,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 42,
+  "fields": {
+   "gpu": 2,
+   "game": 2,
+   "technology": 2,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 43,
+  "fields": {
+   "gpu": 2,
+   "game": 2,
+   "technology": 3,
+   "resolution": "1080p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 44,
+  "fields": {
+   "gpu": 2,
+   "game": 2,
+   "technology": 3,
+   "resolution": "1440p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 45,
+  "fields": {
+   "gpu": 2,
+   "game": 2,
+   "technology": 3,
+   "resolution": "2160p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 46,
+  "fields": {
+   "gpu": 2,
+   "game": 3,
+   "technology": 1,
+   "resolution": "1080p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 47,
+  "fields": {
+   "gpu": 2,
+   "game": 3,
+   "technology": 1,
+   "resolution": "1440p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 48,
+  "fields": {
+   "gpu": 2,
+   "game": 3,
+   "technology": 1,
+   "resolution": "2160p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 49,
+  "fields": {
+   "gpu": 2,
+   "game": 3,
+   "technology": 2,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 50,
+  "fields": {
+   "gpu": 2,
+   "game": 3,
+   "technology": 2,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 51,
+  "fields": {
+   "gpu": 2,
+   "game": 3,
+   "technology": 2,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 52,
+  "fields": {
+   "gpu": 2,
+   "game": 3,
+   "technology": 3,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 53,
+  "fields": {
+   "gpu": 2,
+   "game": 3,
+   "technology": 3,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 54,
+  "fields": {
+   "gpu": 2,
+   "game": 3,
+   "technology": 3,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 55,
+  "fields": {
+   "gpu": 3,
+   "game": 1,
+   "technology": 1,
+   "resolution": "1080p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 56,
+  "fields": {
+   "gpu": 3,
+   "game": 1,
+   "technology": 1,
+   "resolution": "1440p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 57,
+  "fields": {
+   "gpu": 3,
+   "game": 1,
+   "technology": 1,
+   "resolution": "2160p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 58,
+  "fields": {
+   "gpu": 3,
+   "game": 1,
+   "technology": 2,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 59,
+  "fields": {
+   "gpu": 3,
+   "game": 1,
+   "technology": 2,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 60,
+  "fields": {
+   "gpu": 3,
+   "game": 1,
+   "technology": 2,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 61,
+  "fields": {
+   "gpu": 3,
+   "game": 1,
+   "technology": 3,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 62,
+  "fields": {
+   "gpu": 3,
+   "game": 1,
+   "technology": 3,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 63,
+  "fields": {
+   "gpu": 3,
+   "game": 1,
+   "technology": 3,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 64,
+  "fields": {
+   "gpu": 3,
+   "game": 2,
+   "technology": 1,
+   "resolution": "1080p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 65,
+  "fields": {
+   "gpu": 3,
+   "game": 2,
+   "technology": 1,
+   "resolution": "1440p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 66,
+  "fields": {
+   "gpu": 3,
+   "game": 2,
+   "technology": 1,
+   "resolution": "2160p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 67,
+  "fields": {
+   "gpu": 3,
+   "game": 2,
+   "technology": 2,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 68,
+  "fields": {
+   "gpu": 3,
+   "game": 2,
+   "technology": 2,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 69,
+  "fields": {
+   "gpu": 3,
+   "game": 2,
+   "technology": 2,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 70,
+  "fields": {
+   "gpu": 3,
+   "game": 2,
+   "technology": 3,
+   "resolution": "1080p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 71,
+  "fields": {
+   "gpu": 3,
+   "game": 2,
+   "technology": 3,
+   "resolution": "1440p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 72,
+  "fields": {
+   "gpu": 3,
+   "game": 2,
+   "technology": 3,
+   "resolution": "2160p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 73,
+  "fields": {
+   "gpu": 3,
+   "game": 3,
+   "technology": 1,
+   "resolution": "1080p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 74,
+  "fields": {
+   "gpu": 3,
+   "game": 3,
+   "technology": 1,
+   "resolution": "1440p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 75,
+  "fields": {
+   "gpu": 3,
+   "game": 3,
+   "technology": 1,
+   "resolution": "2160p",
+   "status": "unsupported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 76,
+  "fields": {
+   "gpu": 3,
+   "game": 3,
+   "technology": 2,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 77,
+  "fields": {
+   "gpu": 3,
+   "game": 3,
+   "technology": 2,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 78,
+  "fields": {
+   "gpu": 3,
+   "game": 3,
+   "technology": 2,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 79,
+  "fields": {
+   "gpu": 3,
+   "game": 3,
+   "technology": 3,
+   "resolution": "1080p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 80,
+  "fields": {
+   "gpu": 3,
+   "game": 3,
+   "technology": 3,
+   "resolution": "1440p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.compatibility",
+  "pk": 81,
+  "fields": {
+   "gpu": 3,
+   "game": 3,
+   "technology": 3,
+   "resolution": "2160p",
+   "status": "supported",
+   "performance_summary": "",
+   "image_quality_summary": "",
+   "latency_summary": "",
+   "limitations": "",
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.researchevidence",
+  "pk": 1,
+  "fields": {
+   "technology": 1,
+   "game": null,
+   "gpu": null,
+   "resolution": "",
+   "source_title": "DLSS 4 Technology",
+   "source_url": "https://www.nvidia.com/en-us/geforce/technologies/dlss/",
+   "publisher": "Nvidia",
+   "published_at": null,
+   "findings": "A major strength is the use of dedicated NVIDIA hardware such as Tensor Cores. NVIDIA notes that DLSS was designed to benefit situations with high GPU load. The associated limitation is hardware and game dependence: DLSS features require supported NVIDIA hardware and a supported game implementation.",
+   "limitations": "A major limitation in existing research is inconsistent benchmarking methodology. The group's proposal identifies variation in games, GPUs, resolutions, quality presets, and benchmark methods as a core problem.",
+   "preference": "balanced",
+   "performance_score": 5,
+   "image_quality_score": 5,
+   "latency_score": 4,
+   "confidence": 2,
+   "is_active": true,
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.researchevidence",
+  "pk": 2,
+  "fields": {
+   "technology": 2,
+   "game": null,
+   "gpu": null,
+   "resolution": "",
+   "source_title": "AMD FSR",
+   "source_url": "https://www.amd.com/en/products/graphics/technologies/fidelityfx/super-resolution.html?",
+   "publisher": "AMD",
+   "published_at": null,
+   "findings": "FSR's important advantage has historically been broad hardware compatibility. However, current generations have different requirements, meaning that an application cannot treat FSR as a single feature. Newer ML-powered FSR features target newer Radeon hardware, while earlier versions retain wider compatibility",
+   "limitations": "A second limitation is version dependence. DLSS, FSR and XeSS are continuously evolving, so older findings may not represent current releases. Current vendor documentation confirms substantial ongoing development in all three technologies.",
+   "preference": "balanced",
+   "performance_score": 4,
+   "image_quality_score": 3,
+   "latency_score": 4,
+   "confidence": 2,
+   "is_active": true,
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ },
+ {
+  "model": "advisor.researchevidence",
+  "pk": 3,
+  "fields": {
+   "technology": 3,
+   "game": null,
+   "gpu": null,
+   "resolution": "",
+   "source_title": "Intel XeSS",
+   "source_url": "https://www.intel.com/content/www/us/en/developer/articles/technical/xess-sr-developer-guide.html?",
+   "publisher": "Intel",
+   "published_at": null,
+   "findings": "XeSS also demonstrates why hardware architecture must be considered. Different hardware execution paths can affect performance and quality, which supports the group's decision to include GPU architecture as a moderating factor in the conceptual framework.",
+   "limitations": "A third limitation is hardware dependence. A technology can behave differently depending on GPU architecture and execution path, making simplistic brand-based recommendations potentially misleading.",
+   "preference": "balanced",
+   "performance_score": 4,
+   "image_quality_score": 4,
+   "latency_score": 4,
+   "confidence": 2,
+   "is_active": true,
+   "created_at": "2026-10-21T00:00:00Z",
+   "updated_at": "2026-10-21T00:00:00Z"
+  }
+ }
+]

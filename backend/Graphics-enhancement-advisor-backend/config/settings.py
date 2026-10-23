@@ -10,6 +10,10 @@ DEVELOPMENT_SECRET_KEY = "local-development-key-change-before-deployment"
 SECRET_KEY = os.getenv("SECRET_KEY", DEVELOPMENT_SECRET_KEY)
 DEBUG = os.getenv("DEBUG", "False").lower() in {"1", "true", "yes"}
 ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",") if host.strip()]
+# Render sets this variable to the service's public hostname, so the server always accepts its own address.
+_render_host = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+if _render_host and _render_host not in ALLOWED_HOSTS:
+   ALLOWED_HOSTS.append(_render_host)
 if DEBUG:
     if "10.0.2.2" not in ALLOWED_HOSTS:
         ALLOWED_HOSTS.append("10.0.2.2")  # Android emulator host gateway for local development.
