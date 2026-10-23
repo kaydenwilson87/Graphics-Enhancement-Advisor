@@ -14,7 +14,7 @@ A small server-rendered PHP site for managing GPUs, games, compatibility, and re
 From the repository root, set `GEA_API_BASE_URL` to the Django API base and start PHP's development server:
 
 ```sh
-export GEA_API_BASE_URL=http://127.0.0.1:8000/api/v1
+export GEA_API_BASE_URL=https://graphics-enhancement-advisor-1.onrender.com/api/v1
 php -S 127.0.0.1:8080 -t php-admin
 ```
 
@@ -26,8 +26,8 @@ The portal obtains a Django JWT at `/auth/token/`, then verifies `is_staff` thro
 
 For recommendations, add a verified compatibility record matching the exact GPU, game, and resolution, with status `supported`. Add active research evidence for the same technology with at least one score from 1 to 5. Do not guess compatibility or scores: include a source and its limitations. API keys enable the optional explanation provider; they do not supply compatibility or benchmark data.
 
-Set `GEA_API_BASE_URL` in the PHP server environment, not in a public web file. Keep the portal behind HTTPS in deployment. For reliable session cookies, serve it over HTTPS. Catalog deletion is permanent and may cascade to associated compatibility and research-evidence rows; prefer hiding an entry when it should no longer appear in the mobile app.
+Set `GEA_API_BASE_URL` in the PHP server environment when overriding the default deployed API URL. Keep the portal behind HTTPS in deployment. For reliable session cookies, serve it over HTTPS. Catalog deletion is permanent and may cascade to associated compatibility and research-evidence rows; prefer hiding an entry when it should no longer appear in the mobile app.
 
 ## Production configuration
 
-The Netlify URL is the public frontend only. Deploy Django separately and set `GEA_API_BASE_URL` on the PHP host to the Django service URL, including `/api/v1` (for example, `https://your-django-service.example.com/api/v1`). Do not set it to the Netlify hostname unless Netlify is configured to proxy `/api/*` to Django. Keep the PHP admin portal on a PHP-capable HTTPS host; Netlify's static hosting does not execute this PHP file.
+The Netlify URL is the public frontend only. Django is hosted at `https://graphics-enhancement-advisor-1.onrender.com`; the Android project and PHP portal default to its API at `/api/v1`. To deploy this portal on Render, create a Docker Web Service from the same repository with root directory `php-admin`, set `GEA_API_BASE_URL=https://graphics-enhancement-advisor-1.onrender.com/api/v1`, and set health check path `/health.php`. The supplied Dockerfile serves the portal over Apache/PHP with cURL. Netlify's static hosting does not execute this PHP file.

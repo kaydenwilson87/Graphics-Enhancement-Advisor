@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 // Staff-only server-rendered catalog manager for the Django REST API.
-// Configure GEA_API_BASE_URL (for example https://api.example.com/api/v1) in the PHP host.
+// Override GEA_API_BASE_URL in the PHP host if deploying against another Django API.
 
-$apiBase = rtrim(getenv('GEA_API_BASE_URL') ?: 'http://127.0.0.1:8000/api/v1', '/');
+$apiBase = rtrim(getenv('GEA_API_BASE_URL') ?: 'https://graphics-enhancement-advisor-1.onrender.com/api/v1', '/');
 $secureCookie = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
 session_set_cookie_params(['httponly' => true, 'secure' => $secureCookie, 'samesite' => 'Lax']);
 session_start();
