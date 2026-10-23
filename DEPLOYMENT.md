@@ -12,7 +12,7 @@ It does not run Django or PHP by itself. Keep three service URLs distinct:
 |---|---|---|
 | Frontend | Netlify | `https://graphic-enhancement-advicer.netlify.app` |
 | REST API | Render | `https://graphics-enhancement-advisor-1.onrender.com/api/v1/` |
-| Admin portal | PHP-capable HTTPS host | Set `GEA_API_BASE_URL` to `https://graphics-enhancement-advisor-1.onrender.com/api/v1` |
+| Admin portal | Render | `https://graphics-enhancement-advisor-3.onrender.com` (set `GEA_API_BASE_URL` to `https://graphics-enhancement-advisor-1.onrender.com/api/v1`) |
 
 ## Django host environment
 
@@ -37,17 +37,17 @@ The Android app needs the Django URL, not the Netlify URL. From the repository r
 ./gradlew assembleRelease -PapiBaseUrl=https://graphics-enhancement-advisor-1.onrender.com/api/v1/
 ```
 
-For local Android emulator development, the default remains `http://10.0.2.2:8000/api/v1/`.
+For local Android emulator development, override the deployed URL with `-PapiBaseUrl=http://10.0.2.2:8000/api/v1/` when invoking Gradle.
 
 ## PHP admin portal
 
-Deploy `php-admin/` as a separate Render Docker Web Service. In Render, connect the same GitHub repository, set the **Root Directory** to `php-admin`, and select Docker (Render will use `php-admin/Dockerfile`). Set this environment variable:
+The PHP admin portal is deployed as a separate Render Docker Web Service at [https://graphics-enhancement-advisor-3.onrender.com](https://graphics-enhancement-advisor-3.onrender.com). Its Render service uses the `php-admin/` root and Dockerfile. Set this environment variable on that service:
 
 ```dotenv
 GEA_API_BASE_URL=https://graphics-enhancement-advisor-1.onrender.com/api/v1
 ```
 
-Set the service health check path to `/health.php`. The Docker image runs Apache with PHP 8.3 and cURL, and listens on Render's `PORT`. The admin portal will be available at the new service's `onrender.com` URL. It requires a Django staff account to log in. Netlify does not execute PHP.
+Set the service health check path to `/health.php`. The Docker image runs Apache with PHP 8.3 and cURL, and listens on Render's `PORT`. The portal requires a Django staff account to log in. Netlify does not execute PHP.
 
 ## Smoke checks
 

@@ -30,7 +30,7 @@ Android app (Java)  --HTTPS/JSON-->  Django REST API  -->  PostgreSQL (productio
 |---|---|---|
 | Mobile app | `app/` | Java, Android Views, Material Components (min SDK 24) |
 | Backend API | `backend/Graphics-enhancement-advisor-backend/` | Python, Django, Django REST Framework, JWT login |
-| Web admin (optional) | `php-admin/` | PHP site that uses the same API |
+| Web admin | `php-admin/` | PHP site that uses the same API ([live portal](https://graphics-enhancement-advisor-3.onrender.com)) |
 
 Inside the app, all screens talk to three small interfaces in `data/` (`AuthRepository`,
 `CatalogRepository`, `ComparisonRepository`) plus `RecommendationRepository`. The HTTP code lives in `data/api/`.
@@ -54,7 +54,7 @@ Check it at `http://127.0.0.1:8000/health/`. The default local database is SQLit
 
 ## Deployment
 
-The production URL split, Django environment variables, Android build setting, and PHP admin configuration are documented in [DEPLOYMENT.md](DEPLOYMENT.md). The Netlify URL hosts the frontend; deploy Django separately and point both Android and PHP admin at the Django API URL.
+The deployed services are [Netlify frontend](https://graphic-enhancement-advicer.netlify.app), [Django API](https://graphics-enhancement-advisor-1.onrender.com), and [PHP admin portal](https://graphics-enhancement-advisor-3.onrender.com). Both the Android app and PHP admin use the Django API. Deployment settings and local development overrides are documented in [DEPLOYMENT.md](DEPLOYMENT.md).
 
 **Demo data (optional).** If `advisor/fixtures/demo_data.json` is present, load it on a fresh database with
 `python manage.py loaddata demo_data`. Otherwise add GPUs and games in the app's admin screens, and
@@ -65,10 +65,7 @@ a technology when it has compatibility and evidence data for the chosen GPU and 
 
 1. Install **Android Studio** and open the repository's top-level folder (the one containing `settings.gradle.kts`).
 2. Wait for the Gradle sync to finish.
-3. Make sure the backend is running. The app finds it through one setting, `BASE_URL` in
-   `app/src/main/java/com/graphicsadvisor/app/data/api/ApiConfig.java`.
-   - Android emulator: the default `http://10.0.2.2:8000/api/v1/` reaches the server on your own computer.
-   - Hosted server: change it to the deployed address, which must start with `https://` and end with `/api/v1/`.
+3. The checked-in Gradle property points to the deployed API at `https://graphics-enhancement-advisor-1.onrender.com/api/v1/`. To use a local backend from an Android emulator, override it with `-PapiBaseUrl=http://10.0.2.2:8000/api/v1/` when building or running Gradle.
 4. Create an emulator in *Device Manager* (or plug in a phone with USB debugging) and press **Run**.
 
 **Accounts.** Register in the app to get a normal user. The account created with `createsuperuser` is a
