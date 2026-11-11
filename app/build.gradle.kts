@@ -43,6 +43,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     testImplementation(libs.junit)
+    testImplementation("org.json:json:20240303") // real org.json for plain JVM unit tests
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
 }
