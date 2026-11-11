@@ -13,7 +13,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -119,8 +118,8 @@ public final class ApiClient {
         try {
             c = (HttpURLConnection) new URL(ApiConfig.BASE_URL + path).openConnection();
             c.setRequestMethod(method);
-            c.setConnectTimeout(30000);
-            c.setReadTimeout(90000);
+            c.setConnectTimeout(10000);
+            c.setReadTimeout(20000);
             c.setRequestProperty("Accept", "application/json");
             if (withToken && Session.accessToken != null) {
                 c.setRequestProperty("Authorization", "Bearer " + Session.accessToken);
@@ -165,24 +164,8 @@ public final class ApiClient {
         }
     }
 
-    /** Turns a Django REST error body into one short message. */
+    /** Turns a Django REST error body into one short message (see {@link ApiErrors}). */
     public static String errorMessage(Response r) {
-        try {
-            JSONObject o = new JSONObject(r.body);
-            if (o.has("detail")) return o.getString("detail");
-            Iterator<String> keys = o.keys();
-            if (keys.hasNext()) {
-                String field = keys.next();
-                Object value = o.get(field);
-                String msg = value instanceof JSONArray ? ((JSONArray) value).optString(0) : String.valueOf(value);
-                if (field.equals("non_field_errors")) return msg;
-                String label = field.replace('_', ' ');
-                return Character.toUpperCase(label.charAt(0)) + label.substring(1) + ": " + msg;
-            }
-        } catch (JSONException ignored) {
-            // body was not JSON; fall through to the generic messages
-        }
-        if (r.code == 403) return "You do not have permission to do that.";
-        return "Server error (" + r.code + ").";
+        return ApiErrors.message(r.code, r.body);
     }
 }
